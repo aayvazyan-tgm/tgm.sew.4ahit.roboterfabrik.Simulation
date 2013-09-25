@@ -1,7 +1,7 @@
 package ayvazyanbelinic;
 
 import java.util.concurrent.ThreadPoolExecutor;
-//import von log4j fehlt
+import org.apache.log4j.*;
 
 /**
  * 

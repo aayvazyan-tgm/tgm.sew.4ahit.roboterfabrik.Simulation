@@ -1,6 +1,6 @@
 package ayvazyanbelinic;
 
-//import von log4j fehlt
+import org.apache.log4j.*;
 
 /**
  * 
