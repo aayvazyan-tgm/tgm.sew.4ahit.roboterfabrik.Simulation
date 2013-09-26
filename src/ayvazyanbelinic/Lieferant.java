@@ -29,6 +29,21 @@ public class Lieferant implements Stopable {
 
 	
 	
+	
+	//Konstruktor(en)
+	
+	/**
+	 * 
+	 * @param logger
+	 * @param lagerverzeichnis
+	 */
+	public Lieferant(Logger logger, String lagerverzeichnis) {
+		
+	}
+	
+	
+	
+	
 	//Methode(n)
 	
 	/**
@@ -37,7 +52,7 @@ public class Lieferant implements Stopable {
 	 * @param logger
 	 * @param lager
 	 */
-	public void liefern(String bestandteilname, Logger logger, String lager) {
+	public void liefern(String bestandteilname) {
 
 	}
 

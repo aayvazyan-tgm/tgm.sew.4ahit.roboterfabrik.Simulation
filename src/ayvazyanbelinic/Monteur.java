@@ -25,12 +25,7 @@ public class Monteur implements Stopable {
 	/**
 	 * 
 	 */
-	private Sekretariat sekretariat;
-
-	/**
-	 * 
-	 */
-	private String lager;
+	private String lagerverzeichnis;
 
 	
 	
@@ -38,11 +33,10 @@ public class Monteur implements Stopable {
 	
 	/**
 	 * 
-	 * @param sekretariat
 	 * @param logger
-	 * @param lager
+	 * @param lagerverzeichnis
 	 */
-	public Monteur(Sekretariat sekretariat, Logger logger, String lager) {
+	public Monteur(Logger logger, String lagerverzeichnis) {
 
 	}
 

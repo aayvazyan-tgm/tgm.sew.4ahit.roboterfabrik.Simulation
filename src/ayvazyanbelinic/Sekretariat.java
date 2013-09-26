@@ -1,7 +1,5 @@
 package ayvazyanbelinic;
 
-import java.util.concurrent.ThreadPoolExecutor;
-import org.apache.log4j.*;
 
 /**
  * 
@@ -16,41 +14,27 @@ public class Sekretariat {
 	/**
 	 * 
 	 */
-	private ThreadPoolExecutor pool;
+	private int monteurID;
 
 	/**
 	 * 
 	 */
-	private int mid;
+	private int threadeeID;
 
 	/**
 	 * 
 	 */
-	private int tid;
+	private int lieferantID;
 
-	/**
-	 * 
-	 */
-	private Logger logger;
-
-	/**
-	 * 
-	 */
-	private String lager;
-
+	
 	
 	
 	//Konstruktor(en)
 	
 	/**
 	 * 
-	 * @param lager
-	 * @param log
-	 * @param lieferanten
-	 * @param monteure
-	 * @param laufzeit
 	 */
-	public Sekretariat(String lager, String log, int lieferanten, int monteure, int laufzeit) {
+	public Sekretariat() {
 
 	}
 
@@ -62,7 +46,7 @@ public class Sekretariat {
 	 * 
 	 * @return
 	 */
-	public int nextMID() {
+	public static int nextMID() {
 		return 0;
 	}
 
@@ -70,7 +54,15 @@ public class Sekretariat {
 	 * 
 	 * @return
 	 */
-	public int nextTID() {
+	public static int nextTID() {
+		return 0;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static int nextLID() {
 		return 0;
 	}
 
