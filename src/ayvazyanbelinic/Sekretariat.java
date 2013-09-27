@@ -27,6 +27,11 @@ public class Sekretariat {
 	 * 
 	 */
 	private HashMap<Long,String> monteurID;
+	
+	/**
+	 * 
+	 */
+	private HashMap<Long,String> threadeeID;
 
 	
 	
@@ -65,6 +70,14 @@ public class Sekretariat {
 	 * @return
 	 */
 	public HashMap<Long,String> getMonteurID() {
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public HashMap<Long,String> getThreadeeID() {
 		return null;
 	}
 
