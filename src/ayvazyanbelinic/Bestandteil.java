@@ -8,7 +8,7 @@ package ayvazyanbelinic;
  * @author Vennesa Belinic
  * @version 2013-09-24
  */
-public class Bestandteil {
+public abstract class Bestandteil {
 
 	
 	//Attribut(e)
@@ -17,12 +17,12 @@ public class Bestandteil {
 	 * Der Name des Bestandteiles.
 	 * Auge, Kettenantrieb, Rumpf, Arm
 	 */
-	public String name;
+	private String name;
 	
 	/**
 	 * Die Seriennummer, in Form von 20 ganzstelligen zufälligen Zahlen(mit max 3 Stellen).
 	 */
-	public int[] snr;
+	private int[] snr;
 
 	
 	

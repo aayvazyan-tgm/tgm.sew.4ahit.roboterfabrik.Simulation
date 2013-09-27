@@ -1,5 +1,7 @@
 package ayvazyanbelinic;
 
+import java.util.HashMap;
+
 
 /**
  * Stellt eine fertig zusammengebauten Roboter dar.
@@ -13,17 +15,32 @@ public class Threadee {
 	
 	//Attribut(e)
 	
+	
 	/**
-	 * Die Bestandteile aus denen der Roboter besteht.
-	 * (2 Augen, 1 Rumpf, 1 Kettenantrieb, 2 Arme)
+	 * Die Augen des Roboters als Auge-Array, da es 2 sind.
 	 */
-	private Bestandteil[] bestandteile;
+	private Auge[] augen;
+	
+	/**
+	 * Der Rumpf des Roboters.
+	 */
+	private Rumpf rumpf;
+	
+	/**
+	 * Der Kettenantrieb des Roboters.
+	 */
+	private Kettenantrieb kettenantrieb;
+	
+	/**
+	 * Die Arme des Roboters als Arm-Array da es 2 sind.
+	 */
+	private Arm[] arme;
 
 	/**
 	 * Die ID des Threadees.
 	 * Wird ihm vom der Klasse Sekretariat zugewiesen.
 	 */
-	private int id;
+	private HashMap<Long,String> id;
 
 	
 	
@@ -34,9 +51,12 @@ public class Threadee {
 	 * @param id Die ID des Threadees
 	 * @param bestandteile Die Bestandteile, als Bestanteil-Array
 	 */
-	public Threadee(int id, Bestandteil[] bestandteile) {
+	public Threadee(HashMap<Long,String> id, Auge[] augen, Rumpf rumpf, Kettenantrieb antrieb, Arm[] arme) {
 		this.id = id;							//Hier ist keine Überprüfung nötig da die ID vom Sekretariat vergeben wird,
-		this.bestandteile = bestandteile;		//und die Bestandteile vom Monteur, der die Daten aus dem File ausliest.
+		this.augen = augen;						//und die Bestandteile vom Monteur, der die Daten vom Lagermitarbeiter bekommt.
+		this.rumpf = rumpf;
+		this.kettenantrieb = antrieb;
+		this.arme = arme;
 	}
 
 }

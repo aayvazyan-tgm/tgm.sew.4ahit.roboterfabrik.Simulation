@@ -42,8 +42,14 @@ public class MyCommandLine {
 	private int monteurAnzahl;
 	
 	/**
+	 * Die Anzahl der Lagermitarbeiter Threads.
+	 * min 1 , max 10000
+	 */
+	private int lagerMitarbeiterAnzahl;
+	
+	/**
 	 * Die Laufzeit in Milisekunden.
-	 * min 1000 , max 10000000 
+	 * min 1000 , max 10000000
 	 */
 	private int laufzeit;
 	
@@ -58,6 +64,7 @@ public class MyCommandLine {
 	 * @throws IllegalNubmberOfLieferantenException Wird geworfen wenn, eine üngültige Anzahl von Lieferanten eingegeben wurde
 	 * @throws IllegalNubmberOfMonteureException Wird geworfen wenn, eine üngültige Anzahl von Monteuren eingegeben wurde
 	 * @throws IllegalLaufzeitException Wird geworfen wenn, eine üngültige Laufzeit eingegeben wurde
+	 * @throws IllegalNumberOfLMException Wird geworfen wenn, eine üngültige Anzahl von Lagermitarbeiter eingegeben wurde
 	 */
 	public MyCommandLine(String[] args) {
 
@@ -73,13 +80,16 @@ public class MyCommandLine {
 		Option oLagerVerzeichnis = obuilder.withLongName("lager").withShortName("l").withDescription("Verzeichnis der Lagers")
 				.withArgument(abuilder.withName("verzeichnis").withMinimum(1).withMaximum(1).create()).create();
 		
-		Option oLogVerzeichnis = obuilder.withLongName("logs").withShortName("").withDescription("Verzeichnis des Log-Files")
+		Option oLogVerzeichnis = obuilder.withLongName("logs").withShortName("o").withDescription("Verzeichnis des Log-Files")
 				.withArgument(abuilder.withName("verzeichnis").withMinimum(1).withMaximum(1).create()).create();
 		
 		Option oLieferantenAnzahl = obuilder.withLongName("lieferanten").withShortName("i").withDescription("Anzahl der Lieferanten Threads")
 				.withArgument(abuilder.withName("anzahl").withMinimum(1).withMaximum(1).create()).create();
 		
 		Option oMonteurAnzahl = obuilder.withLongName("monteure").withShortName("m").withDescription("Anzahl der Monteur Threads")
+				.withArgument(abuilder.withName("anzahl").withMinimum(1).withMaximum(1).create()).create();
+		
+		Option oLagerMitarbeiterAnzahl = obuilder.withLongName("lagermitarbeiter").withShortName("a").withDescription("Anzahl der Lagermitarbeiter Threads")
 				.withArgument(abuilder.withName("anzahl").withMinimum(1).withMaximum(1).create()).create();
 		
 		Option oLaufzeit = obuilder.withLongName("laufzeit").withShortName("t").withDescription("Laufzeit in Millisekunden")
@@ -125,6 +135,17 @@ public class MyCommandLine {
 					System.out.println(cl.getValue(oMonteurAnzahl).toString() + " ist keine Zahl!");
 				}
 			}
+			
+			if(cl.hasOption(oLagerMitarbeiterAnzahl)) {
+				try {
+					this.lagerMitarbeiterAnzahl = (int) cl.getValue(oLagerMitarbeiterAnzahl);
+					if(this.lagerMitarbeiterAnzahl <= 0 || this.lagerMitarbeiterAnzahl > 10000)
+						throw new IllegalNubmberOfLMException();
+				} catch(ClassCastException e) {
+					System.out.println(cl.getValue(oLagerMitarbeiterAnzahl).toString() + " ist keine Zahl!");
+				}
+			} else
+				this.lagerMitarbeiterAnzahl=1;
 			
 			if(cl.hasOption(oLaufzeit)) {
 				try {
@@ -175,6 +196,14 @@ public class MyCommandLine {
 	 * @return Anzahl der Monteure als int
 	 */
 	public int getMonteurAnzahl() {
+		return monteurAnzahl;
+	}
+	
+	/**
+	 * Gibt die Anzahl der LagerMitarbeiter als int zurück
+	 * @return Anzahl der LagerMitarbeiter als int
+	 */
+	public int getLagerMitarbeiterAnzahl() {
 		return monteurAnzahl;
 	}
 

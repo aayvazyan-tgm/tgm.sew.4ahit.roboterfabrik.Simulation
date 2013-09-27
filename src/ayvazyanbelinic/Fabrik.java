@@ -4,7 +4,6 @@
 package ayvazyanbelinic;
 
 import java.util.concurrent.ThreadPoolExecutor;
-import org.apache.log4j.Logger;
 
 
 /**
@@ -19,37 +18,17 @@ public class Fabrik {
 	/**
 	 * 
 	 */
-	private ThreadPoolExecutor pool;
+	private ThreadPoolExecutor lagerMitarbeiterPool;
 	
 	/**
 	 * 
 	 */
-	private Logger logger;
+	private ThreadPoolExecutor lieferantenPool;
 	
 	/**
 	 * 
 	 */
-	private String lagerVerzeichnis;
-	
-	/**
-	 * 
-	 */
-	private String logVerzeichnis;
-	
-	/**
-	 * 
-	 */
-	private int lieferantenAnzahl;
-	
-	/**
-	 * 
-	 */
-	private int monteurAnzahl;
-	
-	/**
-	 * 
-	 */
-	private int laufzeit;
+	private ThreadPoolExecutor monteurPool;
 	
 	/**
 	 * 
@@ -63,13 +42,13 @@ public class Fabrik {
 	
 	/**
 	 * 
-	 * @param laV
-	 * @param loV
-	 * @param lA
-	 * @param mA
-	 * @param lz
+	 * @param lagerVz
+	 * @param lieferantenA
+	 * @param monteurA
+	 * @param lagerMA
+	 * @param laufzeit
 	 */
-	public Fabrik(String laV, String loV, int lA, int mA, int lz) {
+	public Fabrik(String lagerVz, int lieferantenA, int monteurA, int lagerMA, int laufzeit) {
 		
 	}
 }

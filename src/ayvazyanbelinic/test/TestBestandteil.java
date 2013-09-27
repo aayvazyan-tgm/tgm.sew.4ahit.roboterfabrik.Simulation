@@ -2,7 +2,7 @@ package ayvazyanbelinic.test;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import ayvazyanbelinic.Bestandteil;
+import ayvazyanbelinic.*;
 
 /**
  * Testet alle Methoden der Klasse Bestandteile
@@ -31,10 +31,29 @@ public class TestBestandteil {
 	@Test
 	public void testBestandteil_1() {
 		int[] s = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
-		teil = new Bestandteil("Auge", s);
+		teil = new Auge(s);
 		assertNotNull(teil);
 	}
 	
+	/**
+	 * Testet die toString-Methode
+	 */
+	@Test
+	public void testToString_1() {
+		int[] s = {6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7};
+		teil = new Auge(s);
+		assertEquals("Auge,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7", teil.toString());
+	}
+	
+	/**
+	 * Testet die toString-Methode
+	 */
+	@Test
+	public void testToString_2() {
+		int[] sortiert = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
+		teil = new Kettenantrieb(sortiert);
+		assertEquals("Kettenantrieb,0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100", teil.toString());
+	}
 	
 	/*
 	 * Ich teste die sortieren Methode nicht mit mehr als 20 Zahlen, es immer 20 Zahlen sind.
@@ -48,9 +67,9 @@ public class TestBestandteil {
 	public void testSortieren_1() {
 		int[] s = {6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7};
 		int[] sortiert = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
-		teil = new Bestandteil("Arm", s);
+		teil = new Arm(s);
 		teil.sortieren();
-		assertArrayEquals(sortiert, teil.snr);
+		assertEquals("Arm,0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100", teil.toString());
 	}
 	
 	/**
@@ -59,9 +78,9 @@ public class TestBestandteil {
 	@Test
 	public void testSortieren_2() {
 		int[] sortiert = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
-		teil = new Bestandteil("Arm", sortiert);
+		teil = new Rumpf(sortiert);
 		teil.sortieren();
-		assertArrayEquals(sortiert, teil.snr);
+		assertEquals("Rumpf,0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100", teil.toString());
 	}
 	
 	/**
@@ -71,30 +90,9 @@ public class TestBestandteil {
 	public void testSortieren_3() {
 		int[] s = {100,99,98,61,57,52,33,31,20,19,18,14,11,10,7,6,5,2,1,0};
 		int[] sortiert = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
-		teil = new Bestandteil("Arm", s);
+		teil = new Rumpf(s);
 		teil.sortieren();
-		assertArrayEquals(sortiert, teil.snr);
+		assertEquals("Rumpf,0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100" , teil.toString());
 	}
-
-	/**
-	 * Testet die toString-Methode
-	 */
-	@Test
-	public void testToString_1() {
-		int[] s = {6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7};
-		teil = new Bestandteil("Arm", s);
-		assertEquals("Arm,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7", teil.toString());
-	}
-	
-	/**
-	 * Testet die toString-Methode
-	 */
-	@Test
-	public void testToString_2() {
-		int[] sortiert = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
-		teil = new Bestandteil("Kettenantrieb", sortiert);
-		assertEquals("Kettenantrieb,0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100", teil.toString());
-	}
-	
 
 }

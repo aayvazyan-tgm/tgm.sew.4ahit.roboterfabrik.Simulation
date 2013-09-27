@@ -15,10 +15,10 @@ public class IllegalNubmberOfMonteureException extends IllegalArgumentException 
 	//Konstruktor(en)
 	
 	/**
-	 * Default-Konstruktor, gibt den Text 'Ungültige Anzahl von Monteuren!' aus
+	 * Default-Konstruktor, ruft den Konstruktor der super Klasse mit diesem String auf 'Ungültige Anzahl von Monteuren!' aus
 	 */
 	public IllegalNubmberOfMonteureException() {
-		System.out.print("Ungültige Anzahl von Monteuren!");
+		super("Ungültige Anzahl von Monteuren!");
 	}
 	
 	/**

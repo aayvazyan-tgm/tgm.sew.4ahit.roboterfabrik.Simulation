@@ -1,6 +1,7 @@
 package ayvazyanbelinic;
 
-import org.apache.log4j.*;
+import java.util.HashMap;
+
 
 /**
  * 
@@ -15,17 +16,7 @@ public class Monteur implements Stopable {
 	/**
 	 * 
 	 */
-	private int id;
-
-	/**
-	 * 
-	 */
-	private Logger logger;
-
-	/**
-	 * 
-	 */
-	private String lagerverzeichnis;
+	private HashMap<Long, String> id;
 
 	
 	
@@ -33,17 +24,24 @@ public class Monteur implements Stopable {
 	
 	/**
 	 * 
-	 * @param logger
-	 * @param lagerverzeichnis
 	 * @param id
+	 * @param lagerM
 	 */
-	public Monteur(Logger logger, String lagerverzeichnis, int id) {
+	public Monteur(HashMap<Long, String> id, LagerMitarbeiter lagerM) {
 
 	}
 
 
 	
 	//Methode(n)
+	
+	/**
+	 * 
+	 * @return
+	 */
+	protected Threadee zusammenbaun() {
+		return null;
+	}
 	
 	/**
 	 * @see Stopable#stop()

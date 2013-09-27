@@ -15,10 +15,10 @@ public class IllegalLaufzeitException extends IllegalArgumentException {
 	//Konstruktor(en)
 	
 	/**
-	 * Default-Konstruktor, gibt den Text 'Ungültige Laufzeit!' aus
+	 * Default-Konstruktor, ruft den Konstruktor der super Klasse mit diesem String auf 'Ungültige Laufzeit!' aus
 	 */
 	public IllegalLaufzeitException() {
-		System.out.print("Ungültige Laufzeit!");
+		super("Ungültige Laufzeit!");
 	}
 	
 	/**

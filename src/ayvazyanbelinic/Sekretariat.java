@@ -1,5 +1,7 @@
 package ayvazyanbelinic;
 
+import java.util.HashMap;
+
 
 /**
  * 
@@ -14,17 +16,17 @@ public class Sekretariat {
 	/**
 	 * 
 	 */
-	private int monteurID;
-
+	private HashMap<Long,String> lagerMID;
+	
 	/**
 	 * 
 	 */
-	private int threadeeID;
-
+	private HashMap<Long,String> lieferantenID;
+	
 	/**
 	 * 
 	 */
-	private int lieferantID;
+	private HashMap<Long,String> monteurID;
 
 	
 	
@@ -46,24 +48,24 @@ public class Sekretariat {
 	 * 
 	 * @return
 	 */
-	public int nextMID() {
-		return 0;
+	public HashMap<Long,String> getLagerMID() {
+		return null;
 	}
 
 	/**
 	 * 
 	 * @return
 	 */
-	public int nextTID() {
-		return 0;
+	public HashMap<Long,String> getLieferantenID() {
+		return null;
 	}
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public int nextLID() {
-		return 0;
+	public HashMap<Long,String> getMonteurID() {
+		return null;
 	}
 
 }

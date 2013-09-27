@@ -1,6 +1,7 @@
 package ayvazyanbelinic;
 
-import org.apache.log4j.*;
+import java.util.HashMap;
+
 
 /**
  * 
@@ -20,13 +21,7 @@ public class Lieferant implements Stopable {
 	/**
 	 * 
 	 */
-	private int id;
-
-	/**
-	 * 
-	 */
-	private Logger logger;
-
+	private HashMap<Long,String> id;
 	
 	
 	
@@ -34,11 +29,11 @@ public class Lieferant implements Stopable {
 	
 	/**
 	 * 
-	 * @param logger
-	 * @param lagerverzeichnis
 	 * @param id
+	 * @param lagerverzeichnis
+	 * @param lagerM
 	 */
-	public Lieferant(Logger logger, String lagerverzeichnis, int id) {
+	public Lieferant(HashMap<Long,String> id, String lagerverzeichnis, LagerMitarbeiter lagerM) {
 		
 	}
 	
@@ -50,10 +45,8 @@ public class Lieferant implements Stopable {
 	/**
 	 * 
 	 * @param bestandteilname
-	 * @param logger
-	 * @param lager
 	 */
-	public void liefern(String bestandteilname) {
+	protected void liefern(String bestandteilname) {
 
 	}
 

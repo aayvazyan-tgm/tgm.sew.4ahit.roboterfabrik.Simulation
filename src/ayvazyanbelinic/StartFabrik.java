@@ -1,8 +1,5 @@
 package ayvazyanbelinic;
 
-import org.apache.commons.cli2.CommandLine;
-import org.apache.commons.cli2.OptionException;
-import org.apache.commons.cli2.commandline.*;;
 
 /**
  * Startet die Fabrik
@@ -11,12 +8,27 @@ import org.apache.commons.cli2.commandline.*;;
  */
 public class StartFabrik {
 
+	//Attribut(e)
+	
+	/**
+	 * 
+	 */
+	private static MyLogger logger;
+	
+	
+	
+	//Methode(n)
+	
 	/**
 	 * main-Methode (Startet alles)
 	 * @param args die Argumente die vom CLI übergeben werden
 	 */
 	public static void main(String[] args) {
-		
+		try {	
+			new MyCommandLine(args);
+		} catch(IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

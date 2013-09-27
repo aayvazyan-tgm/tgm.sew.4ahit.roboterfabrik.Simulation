@@ -15,10 +15,10 @@ public class IllegalNubmberOfLieferantenException extends IllegalArgumentExcepti
 	//Konstruktor(en)
 	
 	/**
-	 * Default-Konstruktor, gibt den Text 'Ungültige Anzahl von Lieferanten!' aus
+	 * Default-Konstruktor, ruft den Konstruktor der super Klasse mit diesem String auf 'Ungültige Anzahl von Lieferanten!' aus
 	 */
 	public IllegalNubmberOfLieferantenException() {
-		System.out.print("Ungültige Anzahl von Lieferanten!");
+		super("Ungültige Anzahl von Lieferanten!");
 	}
 	
 	/**
