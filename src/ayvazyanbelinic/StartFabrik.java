@@ -1,5 +1,7 @@
 package ayvazyanbelinic;
 
+import org.apache.commons.cli2.OptionException;
+
 
 /**
  * Startet die Fabrik
@@ -26,6 +28,10 @@ public class StartFabrik {
 	public static void main(String[] args) {
 		try {	
 			new MyCommandLine(args);
+		} catch(OptionException e) {
+			System.out.println("Es ist ein Fehler beim Verarbeiten aufgetreten!\n" +
+					"Entweder haben Sie nicht alle verpflichtenden Optionen und deren Argument angegeben,\n" +
+					"oder es ist ein allgmeiner Fehler aufgetreten.");
 		} catch(IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 		}

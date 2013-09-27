@@ -11,6 +11,13 @@ import org.apache.commons.cli2.commandline.Parser;
 
 /**
  * Verwaltet die Optionen und deren Argumente.
+ * Es sind 6 Optionen möglich(--lager, --logs, --lieferanten, --monteure, --laufzeit, --lagermitarbeiter).
+ * Alle Optionen bis auf --lagermitarbeiter sind verpflichtend.
+ * Es gibt auchh von alle Optionen Kurzformen(siehe Field Summary).
+ * Bei allen Optionen sind Argumente verpflichtend.
+ * Bei den Argumenten von --lager und --logs handelt es sich um Strings, also Text,
+ * bei allen anderen Optionen sind die Argumente Zahlen(Gueltigkeitsbereich siehe Field Summary).
+ * Die Reihenfolge der Optionen spielt keine Rolle.
  * @author Vennesa Belinic
  * @version 2013-09-26
  */
@@ -20,36 +27,42 @@ public class MyCommandLine {
 	//Attribut(e)
 	
 	/**
-	 * Das Verzeichnis vom Lager
+	 * Das Verzeichnis vom Lager.
+	 * Langform: --lager | Kurzform: -l
 	 */
 	private String lagerVerzeichnis;
 	
 	/**
-	 * Das Verzeichnis des Log-Files
+	 * Das Verzeichnis des Log-Files.
+	 * Langform: --logs | Kurzform: -o
 	 */
 	private String logVerzeichnis;
 	
 	/**
 	 * Die Anzahl der Lieferanten Threads.
-	 * min 1 , max 10000
+	 * Langform: --lieferanten | Kurzform: -i
+	 * Gueltigkeitsbereich: min 1 , max 100000
 	 */
 	private int lieferantenAnzahl;
 	
 	/**
 	 * Die Anzahl der Monteure Threads.
-	 * min 1 , max 10000
+	 * Langform: --monteure | Kurzform: -m
+	 * Gueltigkeitsbereich: min 1 , max 100000
 	 */
 	private int monteurAnzahl;
 	
 	/**
 	 * Die Anzahl der Lagermitarbeiter Threads.
-	 * min 1 , max 10000
+	 * Langform: --lagermitarbeiter | Kurzform: -a
+	 * Gueltigkeitsbereich: min 1 , max 100000
 	 */
 	private int lagerMitarbeiterAnzahl;
 	
 	/**
 	 * Die Laufzeit in Milisekunden.
-	 * min 1000 , max 10000000
+	 * Langform: --laufzeit | Kurzform: -t
+	 * Gueltigkeitsbereich: min 1000 , max 100000000
 	 */
 	private int laufzeit;
 	
@@ -66,7 +79,7 @@ public class MyCommandLine {
 	 * @throws IllegalLaufzeitException Wird geworfen wenn, eine üngültige Laufzeit eingegeben wurde
 	 * @throws IllegalNumberOfLMException Wird geworfen wenn, eine üngültige Anzahl von Lagermitarbeiter eingegeben wurde
 	 */
-	public MyCommandLine(String[] args) {
+	public MyCommandLine(String[] args) throws OptionException{
 
 		DefaultOptionBuilder obuilder = new DefaultOptionBuilder();
 		ArgumentBuilder abuilder = new ArgumentBuilder();
@@ -77,26 +90,26 @@ public class MyCommandLine {
 		 * einer passenden Beschreibung der Option und einer passenden Beschreibung zum Argument.
 		 */
 		
-		Option oLagerVerzeichnis = obuilder.withLongName("lager").withShortName("l").withDescription("Verzeichnis der Lagers")
+		Option oLagerVerzeichnis = obuilder.withLongName("lager").withShortName("l").withRequired(true).withDescription("Verzeichnis der Lagers")
 				.withArgument(abuilder.withName("verzeichnis").withMinimum(1).withMaximum(1).create()).create();
 		
-		Option oLogVerzeichnis = obuilder.withLongName("logs").withShortName("o").withDescription("Verzeichnis des Log-Files")
+		Option oLogVerzeichnis = obuilder.withLongName("logs").withShortName("o").withRequired(true).withDescription("Verzeichnis des Log-Files")
 				.withArgument(abuilder.withName("verzeichnis").withMinimum(1).withMaximum(1).create()).create();
 		
-		Option oLieferantenAnzahl = obuilder.withLongName("lieferanten").withShortName("i").withDescription("Anzahl der Lieferanten Threads")
+		Option oLieferantenAnzahl = obuilder.withLongName("lieferanten").withShortName("i").withRequired(true).withDescription("Anzahl der Lieferanten Threads")
 				.withArgument(abuilder.withName("anzahl").withMinimum(1).withMaximum(1).create()).create();
 		
-		Option oMonteurAnzahl = obuilder.withLongName("monteure").withShortName("m").withDescription("Anzahl der Monteur Threads")
+		Option oMonteurAnzahl = obuilder.withLongName("monteure").withShortName("m").withRequired(true).withDescription("Anzahl der Monteur Threads")
 				.withArgument(abuilder.withName("anzahl").withMinimum(1).withMaximum(1).create()).create();
 		
-		Option oLagerMitarbeiterAnzahl = obuilder.withLongName("lagermitarbeiter").withShortName("a").withDescription("Anzahl der Lagermitarbeiter Threads")
+		Option oLagerMitarbeiterAnzahl = obuilder.withLongName("lagermitarbeiter").withShortName("a").withRequired(false).withDescription("Anzahl der Lagermitarbeiter Threads")
 				.withArgument(abuilder.withName("anzahl").withMinimum(1).withMaximum(1).create()).create();
 		
-		Option oLaufzeit = obuilder.withLongName("laufzeit").withShortName("t").withDescription("Laufzeit in Millisekunden")
+		Option oLaufzeit = obuilder.withLongName("laufzeit").withShortName("t").withRequired(true).withDescription("Laufzeit in Millisekunden")
 				.withArgument(abuilder.withName("sekunden").withMinimum(1).withMaximum(1).create()).create();
 		
 		Group options = gbuilder.withName("options").withOption(oLagerVerzeichnis).withOption(oLogVerzeichnis)
-				.withOption(oLieferantenAnzahl).withOption(oMonteurAnzahl).withOption(oLaufzeit).create();
+				.withOption(oLieferantenAnzahl).withOption(oMonteurAnzahl).withOption(oLagerMitarbeiterAnzahl).withOption(oLaufzeit).create();
 		
 		Parser parser = new Parser();
 		parser.setGroup(options);
@@ -107,57 +120,53 @@ public class MyCommandLine {
 		 * Meldungen und Exceptions verwaltet.
 		 */
 		
-		try {
-			CommandLine cl = parser.parse(args);
+		CommandLine cl = parser.parse(args);
+		
+		if(cl.hasOption(oLagerVerzeichnis))
+			this.lagerVerzeichnis = (String) cl.getValue(oLagerVerzeichnis);
+		
+		if(cl.hasOption(oLogVerzeichnis))
+			this.logVerzeichnis = (String) cl.getValue(oLogVerzeichnis);
 			
-			if(cl.hasOption(oLagerVerzeichnis))
-				this.lagerVerzeichnis = (String) cl.getValue(oLagerVerzeichnis);
-			
-			if(cl.hasOption(oLogVerzeichnis))
-				this.logVerzeichnis = (String) cl.getValue(oLogVerzeichnis);
-				
-			if(cl.hasOption(oLieferantenAnzahl)) {
-				try {
-					this.lieferantenAnzahl = (int) cl.getValue(oLieferantenAnzahl);
-					if(this.lieferantenAnzahl <= 0 || this.lieferantenAnzahl > 10000)
-						throw new IllegalNubmberOfLieferantenException();
-				} catch(ClassCastException e) {
-					System.out.println(cl.getValue(oLieferantenAnzahl).toString() + " ist keine Zahl!");
-				}
+		if(cl.hasOption(oLieferantenAnzahl)) {
+			try {
+				this.lieferantenAnzahl = Integer.parseInt((String)cl.getValue(oLieferantenAnzahl));
+				if(this.lieferantenAnzahl <= 0 || this.lieferantenAnzahl > 100000)
+					throw new IllegalNubmberOfLieferantenException();
+			} catch(NumberFormatException e) {
+				System.out.println(cl.getValue(oLieferantenAnzahl).toString() + " ist keine Zahl!");
 			}
-			
-			if(cl.hasOption(oMonteurAnzahl)) {
-				try {
-					this.monteurAnzahl = (int) cl.getValue(oMonteurAnzahl);
-					if(this.monteurAnzahl <= 0 || this.monteurAnzahl > 10000)
-						throw new IllegalNubmberOfMonteureException();
-				} catch(ClassCastException e) {
-					System.out.println(cl.getValue(oMonteurAnzahl).toString() + " ist keine Zahl!");
-				}
+		}
+		
+		if(cl.hasOption(oMonteurAnzahl)) {
+			try {
+				this.monteurAnzahl = Integer.parseInt((String)cl.getValue(oMonteurAnzahl));
+				if(this.monteurAnzahl <= 0 || this.monteurAnzahl > 100000)
+					throw new IllegalNubmberOfMonteureException();
+			} catch(NumberFormatException e) {
+				System.out.println(cl.getValue(oMonteurAnzahl).toString() + " ist keine Zahl!");
 			}
-			
-			if(cl.hasOption(oLagerMitarbeiterAnzahl)) {
-				try {
-					this.lagerMitarbeiterAnzahl = (int) cl.getValue(oLagerMitarbeiterAnzahl);
-					if(this.lagerMitarbeiterAnzahl <= 0 || this.lagerMitarbeiterAnzahl > 10000)
-						throw new IllegalNubmberOfLMException();
-				} catch(ClassCastException e) {
-					System.out.println(cl.getValue(oLagerMitarbeiterAnzahl).toString() + " ist keine Zahl!");
-				}
-			} else
-				this.lagerMitarbeiterAnzahl=1;
-			
-			if(cl.hasOption(oLaufzeit)) {
-				try {
-					this.laufzeit = (int) cl.getValue(oLaufzeit);
-					if(this.monteurAnzahl < 1000 || this.monteurAnzahl > 10000000)
-						throw new IllegalLaufzeitException();
-				} catch(ClassCastException e) {
-					System.out.println(cl.getValue(oLaufzeit).toString() + " ist keine Zahl!");
-				}
+		}
+		
+		if(cl.hasOption(oLagerMitarbeiterAnzahl)) {
+			try {
+				this.lagerMitarbeiterAnzahl = Integer.parseInt((String)cl.getValue(oLagerMitarbeiterAnzahl));
+				if(this.lagerMitarbeiterAnzahl <= 0 || this.lagerMitarbeiterAnzahl > 100000)
+					throw new IllegalNubmberOfLMException();
+			} catch(NumberFormatException e) {
+				System.out.println(cl.getValue(oLagerMitarbeiterAnzahl).toString() + " ist keine Zahl!");
 			}
-		} catch(OptionException e) {
-			System.out.println("Es ist ein Fehler beim Verarbeiten der Argumente Aufgetreten!");
+		} else
+			this.lagerMitarbeiterAnzahl=1;
+		
+		if(cl.hasOption(oLaufzeit)) {
+			try {
+				this.laufzeit = Integer.parseInt((String)cl.getValue(oLaufzeit));
+				if(this.laufzeit < 1000 || this.laufzeit > 100000000)
+					throw new IllegalLaufzeitException();
+			} catch(NumberFormatException e) {
+				System.out.println(cl.getValue(oLaufzeit).toString() + " ist keine Zahl!");
+			}
 		}
 			
 	}
@@ -204,7 +213,7 @@ public class MyCommandLine {
 	 * @return Anzahl der LagerMitarbeiter als int
 	 */
 	public int getLagerMitarbeiterAnzahl() {
-		return monteurAnzahl;
+		return lagerMitarbeiterAnzahl;
 	}
 
 	/**

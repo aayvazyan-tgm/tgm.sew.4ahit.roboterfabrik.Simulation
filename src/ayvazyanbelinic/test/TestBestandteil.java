@@ -5,7 +5,9 @@ import org.junit.Test;
 import ayvazyanbelinic.*;
 
 /**
- * Testet alle Methoden der Klasse Bestandteile
+ * Testet alle Methoden der Klasse Bestandteile.
+ * Arbeitet mit den erbenden Klassen, da diese alle keine weiteren Methoden implementieren,
+ * und dadurch alle Methoden, und auch alle Konstruktoren getestet werden.
  * @author Vennesa Belinic
  * @version 2013-09-24
  */
