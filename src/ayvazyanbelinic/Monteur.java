@@ -35,8 +35,9 @@ public class Monteur implements Stopable {
 	 * 
 	 * @param logger
 	 * @param lagerverzeichnis
+	 * @param id
 	 */
-	public Monteur(Logger logger, String lagerverzeichnis) {
+	public Monteur(Logger logger, String lagerverzeichnis, int id) {
 
 	}
 

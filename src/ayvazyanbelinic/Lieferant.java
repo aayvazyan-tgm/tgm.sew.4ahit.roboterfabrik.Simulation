@@ -36,8 +36,9 @@ public class Lieferant implements Stopable {
 	 * 
 	 * @param logger
 	 * @param lagerverzeichnis
+	 * @param id
 	 */
-	public Lieferant(Logger logger, String lagerverzeichnis) {
+	public Lieferant(Logger logger, String lagerverzeichnis, int id) {
 		
 	}
 	

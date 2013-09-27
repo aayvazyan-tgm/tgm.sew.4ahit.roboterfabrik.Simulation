@@ -46,7 +46,7 @@ public class Sekretariat {
 	 * 
 	 * @return
 	 */
-	public static int nextMID() {
+	public int nextMID() {
 		return 0;
 	}
 
@@ -54,7 +54,7 @@ public class Sekretariat {
 	 * 
 	 * @return
 	 */
-	public static int nextTID() {
+	public int nextTID() {
 		return 0;
 	}
 	
@@ -62,7 +62,7 @@ public class Sekretariat {
 	 * 
 	 * @return
 	 */
-	public static int nextLID() {
+	public int nextLID() {
 		return 0;
 	}
 

@@ -51,6 +51,11 @@ public class Fabrik {
 	 */
 	private int laufzeit;
 	
+	/**
+	 * 
+	 */
+	private Sekretariat sekretariat;
+	
 	
 	
 	
@@ -58,8 +63,13 @@ public class Fabrik {
 	
 	/**
 	 * 
+	 * @param laV
+	 * @param loV
+	 * @param lA
+	 * @param mA
+	 * @param lz
 	 */
-	public Fabrik() {
+	public Fabrik(String laV, String loV, int lA, int mA, int lz) {
 		
 	}
 }
