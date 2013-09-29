@@ -1,5 +1,7 @@
 package ayvazyanbelinic;
 
+import java.util.LinkedList;
+
 
 /**
  * 
@@ -9,14 +11,14 @@ package ayvazyanbelinic;
  */
 public class Watchdog implements Runnable {
 	private long laufzeit;
-	private Stoppable toWatch;
+	private LinkedList<Stoppable> toWatch;
 	
 	/**
 	 * 
 	 * @param laufzeit gibt an wie lange toStop ausgefuehrt werden soll bis es mit stop() beendet wird (sollte die aktion nicht schon abgeschlossen sein).
-	 * @param toStop ist die Anzuhaltende Runnable.
+	 * @param toStop sind die Anzuhaltenden Runnables in einer LinkedList.
 	 */
-	public Watchdog(int laufzeit, Stoppable toStop) {
+	public Watchdog(int laufzeit, LinkedList<Stoppable> toStop) {
 		this.laufzeit=laufzeit;
 		this.toWatch=toStop;
 	}
@@ -31,7 +33,9 @@ public class Watchdog implements Runnable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		this.toWatch.stop();
+		for(Stoppable toStop:this.toWatch){//Sende ein Stop an sämtliche Stoppables in toWatch
+			toStop.stop();
+		}
 	}
 
 }
