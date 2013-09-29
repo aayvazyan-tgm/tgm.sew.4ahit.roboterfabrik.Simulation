@@ -3,32 +3,35 @@ package ayvazyanbelinic;
 
 /**
  * 
- * @author User
+ * @author Ari Ayvazyan
+ *
  *
  */
 public class Watchdog implements Runnable {
-
-	
-	//Konstruktor(en)
+	private long laufzeit;
+	private Stoppable toWatch;
 	
 	/**
 	 * 
-	 * @param laufzeit
-	 * @param toStop
+	 * @param laufzeit gibt an wie lange toStop ausgefuehrt werden soll bis es mit stop() beendet wird (sollte die aktion nicht schon abgeschlossen sein).
+	 * @param toStop ist die Anzuhaltende Runnable.
 	 */
-	public Watchdog(int laufzeit, Stopable toStop) {
-
+	public Watchdog(int laufzeit, Stoppable toStop) {
+		this.laufzeit=laufzeit;
+		this.toWatch=toStop;
 	}
 
-	
-	
-	//Methode(n)
-
 	/**
-	 * @see Runable#run()
+	 * Der Watchdog wird gestartet und fuehrt stop() aus sobald die angegebene laufzeit abgelaufen ist.
+	 * Run fuehrt die runnable nicht aus!
 	 */
 	public void run() {
-
+		try {
+			Thread.sleep(this.laufzeit);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		this.toWatch.stop();
 	}
 
 }
