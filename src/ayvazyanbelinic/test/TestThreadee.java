@@ -6,6 +6,7 @@ package ayvazyanbelinic.test;
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 import org.junit.Test;
 import ayvazyanbelinic.*;
@@ -34,8 +35,8 @@ public class TestThreadee {
 		Arm[] arme = new Arm[2];
 		arme[0] = new Arm(s3);
 		arme[0] = new Arm(s4);
-		HashMap<Long,String> id = new HashMap<Long,String>();
-		id.put(1l, "Monteur");
+		HashSet<Long> id = new HashSet<Long>();
+		id.add(1l);
 		assertNotNull(new Threadee(id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme));
 	}
 
