@@ -8,7 +8,7 @@ import java.util.HashMap;
  * @author User
  *
  */
-public class Lieferant implements Stopable {
+public class Lieferant implements Stoppable {
 
 	
 	//Attribut(e)
@@ -51,7 +51,7 @@ public class Lieferant implements Stopable {
 	}
 
 	/**
-	 * @see Stopable#stop()
+	 * @see Stoppable#stop()
 	 */
 	public void stop() {
 

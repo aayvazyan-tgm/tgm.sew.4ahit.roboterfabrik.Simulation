@@ -8,7 +8,7 @@ import java.util.HashMap;
  * @author User
  *
  */
-public class Monteur implements Stopable {
+public class Monteur implements Stoppable {
 
 	
 	//Attribut(e)
@@ -44,7 +44,7 @@ public class Monteur implements Stopable {
 	}
 	
 	/**
-	 * @see Stopable#stop()
+	 * @see Stoppable#stop()
 	 */
 	public void stop() {
 

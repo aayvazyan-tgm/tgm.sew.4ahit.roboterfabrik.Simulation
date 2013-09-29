@@ -10,7 +10,7 @@ import java.util.HashMap;
  * @author User
  *
  */
-public class LagerMitarbeiter implements Stopable {
+public class LagerMitarbeiter implements Stoppable {
 
 	
 	//Attribut(e)
@@ -62,7 +62,7 @@ public class LagerMitarbeiter implements Stopable {
 	}
 
 	/** 
-	 * @see ayvazyanbelinic.Stopable#stop()
+	 * @see ayvazyanbelinic.Stoppable#stop()
 	 */
 	@Override
 	public void stop() {
