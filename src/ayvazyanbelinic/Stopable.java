@@ -3,7 +3,7 @@ package ayvazyanbelinic;
 
 /**
  * 
- * @author User
+ * @author Ari Ayvazyan
  *
  */
 public interface Stopable extends Runnable {
@@ -12,7 +12,7 @@ public interface Stopable extends Runnable {
 	//Methodenko(e)pf(e)
 	
 	/**
-	 * 
+	 * stop() soll die implementierende klasse am weiterem ausführen hindern
 	 */
 	public abstract void stop();
 
