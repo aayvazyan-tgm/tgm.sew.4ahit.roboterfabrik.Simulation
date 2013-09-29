@@ -1,6 +1,8 @@
 package ayvazyanbelinic;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 
 /**
@@ -16,7 +18,7 @@ public class Monteur implements Stoppable {
 	/**
 	 * 
 	 */
-	private HashMap<Long, String> id;
+	private HashSet<Long> id;
 
 	
 	
@@ -27,7 +29,7 @@ public class Monteur implements Stoppable {
 	 * @param id
 	 * @param lagerM
 	 */
-	public Monteur(HashMap<Long, String> id, LagerMitarbeiter lagerM) {
+	public Monteur(HashSet<Long> id, LinkedList<LagerMitarbeiter> lagerM) {
 
 	}
 

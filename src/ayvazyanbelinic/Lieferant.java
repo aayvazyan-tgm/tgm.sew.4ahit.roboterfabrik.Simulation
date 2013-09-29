@@ -1,6 +1,8 @@
 package ayvazyanbelinic;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 
 /**
@@ -21,7 +23,7 @@ public class Lieferant implements Stoppable {
 	/**
 	 * 
 	 */
-	private HashMap<Long,String> id;
+	private HashSet<Long> id;
 	
 	
 	
@@ -33,7 +35,7 @@ public class Lieferant implements Stoppable {
 	 * @param lagerverzeichnis
 	 * @param lagerM
 	 */
-	public Lieferant(HashMap<Long,String> id, String lagerverzeichnis, LagerMitarbeiter lagerM) {
+	public Lieferant(HashSet<Long> id, String lagerverzeichnis, LinkedList<LagerMitarbeiter> lagerM) {
 		
 	}
 	
