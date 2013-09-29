@@ -6,7 +6,7 @@ package ayvazyanbelinic;
  * @author Ari Ayvazyan
  *
  */
-public interface Stopable extends Runnable {
+public interface Stoppable extends Runnable {
 
 	
 	//Methodenko(e)pf(e)
