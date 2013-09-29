@@ -1,41 +1,33 @@
-/**
- * 
- */
 package ayvazyanbelinic;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 
 /**
- * @author User
+ * The Class LagerMitarbeiter.
  *
+ * @author Ari Ayvazyan
  */
 public class LagerMitarbeiter implements Stoppable {
 
 	
-	//Attribut(e)
 	
-	/**
-	 * 
-	 */
-	private HashMap<Long,String> id;
+	/** Die id. */
+	private HashSet<Long> id;
 	
-	/**
-	 * 
-	 */
+	/** Das lager Verzeichnis. */
 	private String lagerVerzeichnis;
 	
 	
 	
-	
-	//Konstruktor(en)
-	
 	/**
-	 * 
-	 * @param id
-	 * @param lagerVerzeichnis
+	 * Erstellt einen neuen LagerMitarbeiter
+	 *
+	 * @param id the id
+	 * @param lagerVerzeichnis the lager verzeichnis
 	 */
-	public LagerMitarbeiter(HashMap<Long,String> id, String lagerVerzeichnis) {
+	public LagerMitarbeiter(HashSet<Long> id, String lagerVerzeichnis) {
 		
 	}
 	
@@ -45,14 +37,17 @@ public class LagerMitarbeiter implements Stoppable {
 	//Methode(n)
 	
 	/**
-	 * 
-	 * @return
+	 * Gets the bestandteil.
+	 *
+	 * @return the bestandteil
 	 */
 	public Bestandteil getBestandteil() {
 		return null;
 	}
 	
-	/** 
+	/**
+	 * Run.
+	 *
 	 * @see java.lang.Runnable#run()
 	 */
 	@Override
@@ -61,7 +56,9 @@ public class LagerMitarbeiter implements Stoppable {
 
 	}
 
-	/** 
+	/**
+	 * Stop.
+	 *
 	 * @see ayvazyanbelinic.Stoppable#stop()
 	 */
 	@Override
