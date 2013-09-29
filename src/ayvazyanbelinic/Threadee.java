@@ -1,6 +1,7 @@
 package ayvazyanbelinic;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 
 /**
@@ -40,7 +41,7 @@ public class Threadee {
 	 * Die ID des Threadees.
 	 * Wird ihm vom der Klasse Sekretariat zugewiesen.
 	 */
-	private HashMap<Long,String> id;
+	private HashSet<Long> id;
 
 	
 	
@@ -51,7 +52,7 @@ public class Threadee {
 	 * @param id Die ID des Threadees
 	 * @param bestandteile Die Bestandteile, als Bestanteil-Array
 	 */
-	public Threadee(HashMap<Long,String> id, Auge[] augen, Rumpf rumpf, Kettenantrieb antrieb, Arm[] arme) {
+	public Threadee(HashSet<Long> id, Auge[] augen, Rumpf rumpf, Kettenantrieb antrieb, Arm[] arme) {
 		this.id = id;							//Hier ist keine Überprüfung nötig da die ID vom Sekretariat vergeben wird,
 		this.augen = augen;						//und die Bestandteile vom Monteur, der die Daten vom Lagermitarbeiter bekommt.
 		this.rumpf = rumpf;
