@@ -66,10 +66,10 @@ public class Sekretariat {
 	public synchronized LinkedList<Long> getLagerMID() {
 		if(this.lagerMID.getLast()>=9223372036854775807l){ //Ist die maximale groesse eines Longs erreicht wird ein neuer Listeneintrag erstellt
 			this.lagerMID.add(0l);
-			return (LinkedList<Long>) lagerMID.clone(); // Konvertiert und klont die LinkedList in ein HashSet 
+			return (LinkedList<Long>) lagerMID.clone(); //Klont die Liste
 		}
 		this.lagerMID.set(this.lagerMID.size()-1,this.lagerMID.getLast()+1);
-		return (LinkedList<Long>) lagerMID.clone(); // Konvertiert und klont die LinkedList in ein HashSet 
+		return (LinkedList<Long>) lagerMID.clone(); //Klont die Liste
 	}
 
 	/**
@@ -79,10 +79,10 @@ public class Sekretariat {
 	public synchronized LinkedList<Long> getLieferantenID() {
 		if(this.lieferantenID.getLast()>=9223372036854775807l){ //Ist die maximale groesse eines Longs erreicht wird ein neuer Listeneintrag erstellt
 			this.lieferantenID.add(0l);
-			return (LinkedList<Long>) lieferantenID.clone(); // Konvertiert und klont die LinkedList in ein HashSet 
+			return (LinkedList<Long>) lieferantenID.clone(); //Klont die Liste
 		}
 		this.lieferantenID.set(this.lieferantenID.size()-1,this.lieferantenID.getLast()+1);
-		return (LinkedList<Long>) lieferantenID.clone(); // Konvertiert und klont die LinkedList in ein HashSet 
+		return (LinkedList<Long>) lieferantenID.clone(); //Klont die Liste
 	}
 	
 	/**
@@ -92,10 +92,10 @@ public class Sekretariat {
 	public synchronized LinkedList<Long> getMonteurID() {
 		if(this.monteurID.getLast()>=9223372036854775807l){ //Ist die maximale groesse eines Longs erreicht wird ein neuer Listeneintrag erstellt
 			this.monteurID.add(0l);
-			return (LinkedList<Long>) monteurID.clone(); // Konvertiert und klont die LinkedList in ein HashSet 
+			return (LinkedList<Long>) monteurID.clone(); //Klont die Liste
 		}
 		this.monteurID.set(this.monteurID.size()-1,this.monteurID.getLast()+1);
-		return (LinkedList<Long>) monteurID.clone(); // Konvertiert und klont die LinkedList in ein HashSet 
+		return (LinkedList<Long>) monteurID.clone(); //Klont die Liste
 	}
 	
 	/**
@@ -105,10 +105,10 @@ public class Sekretariat {
 	public synchronized LinkedList<Long> getThreadeeID() {
 		if(this.threadeeID.getLast()>=9223372036854775807l){ //Ist die maximale groesse eines Longs erreicht wird ein neuer Listeneintrag erstellt
 			this.threadeeID.add(0l);
-			return (LinkedList<Long>) threadeeID.clone(); // Konvertiert und klont die LinkedList in ein HashSet 
+			return (LinkedList<Long>) threadeeID.clone(); //Klont die Liste
 		}
 		this.threadeeID.set(this.threadeeID.size()-1,this.threadeeID.getLast()+1);
-		return (LinkedList<Long>) threadeeID.clone(); // Konvertiert und klont die LinkedList in ein HashSet 
+		return (LinkedList<Long>) threadeeID.clone(); //Klont die Liste
 	}
 
 }
