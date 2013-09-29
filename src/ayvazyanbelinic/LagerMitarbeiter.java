@@ -2,6 +2,7 @@ package ayvazyanbelinic;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 
 /**
@@ -14,7 +15,7 @@ public class LagerMitarbeiter implements Stoppable {
 	
 	
 	/** Die id. */
-	private HashSet<Long> id;
+	private LinkedList<Long> id;
 	
 	/** Das lager Verzeichnis. */
 	private String lagerVerzeichnis;
@@ -27,7 +28,7 @@ public class LagerMitarbeiter implements Stoppable {
 	 * @param id the id
 	 * @param lagerVerzeichnis the lager verzeichnis
 	 */
-	public LagerMitarbeiter(HashSet<Long> id, String lagerVerzeichnis) {
+	public LagerMitarbeiter(LinkedList<Long> id, String lagerVerzeichnis) {
 		
 	}
 	

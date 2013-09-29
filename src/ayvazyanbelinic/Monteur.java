@@ -18,7 +18,7 @@ public class Monteur implements Stoppable {
 	/**
 	 * 
 	 */
-	private HashSet<Long> id;
+	private LinkedList<Long> id;
 
 	
 	
@@ -29,7 +29,7 @@ public class Monteur implements Stoppable {
 	 * @param id
 	 * @param lagerM
 	 */
-	public Monteur(HashSet<Long> id, LagerMitarbeiter lagerM) {
+	public Monteur(LinkedList<Long> id, LagerMitarbeiter lagerM) {
 
 	}
 

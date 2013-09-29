@@ -23,7 +23,7 @@ public class Lieferant implements Stoppable {
 	/**
 	 * 
 	 */
-	private HashSet<Long> id;
+	private LinkedList<Long> id;
 	
 	
 	
@@ -35,7 +35,7 @@ public class Lieferant implements Stoppable {
 	 * @param lagerverzeichnis
 	 * @param lagerM
 	 */
-	public Lieferant(HashSet<Long> id, String lagerverzeichnis, LagerMitarbeiter lagerM) {
+	public Lieferant(LinkedList<Long> id, String lagerverzeichnis, LagerMitarbeiter lagerM) {
 		
 	}
 	
