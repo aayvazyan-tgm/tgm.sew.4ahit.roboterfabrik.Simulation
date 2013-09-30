@@ -14,7 +14,7 @@ public class Kettenantrieb extends Bestandteil {
 	 * Führt den Konstruktor der Superklasse aus mit dem name: Kettenantrieb
 	 * @param snr Werte für das Attribut snr[] aus der Superclasse
 	 */
-	public Kettenantrieb(int[] snr) {
+	public Kettenantrieb(Integer[] snr) {
 		super("Kettenantrieb", snr);
 	}
 

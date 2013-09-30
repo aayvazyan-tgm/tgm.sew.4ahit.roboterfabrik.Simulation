@@ -22,7 +22,7 @@ public abstract class Bestandteil {
 	/**
 	 * Die Seriennummer, in Form von 20 ganzstelligen zufälligen Zahlen(mit max 3 Stellen).
 	 */
-	private int[] snr;
+	private Integer[] snr;
 
 	
 	
@@ -33,7 +33,7 @@ public abstract class Bestandteil {
 	 * @param name Wert für das Attribut name
 	 * @param snr Werte für das Attribut snr[]
 	 */
-	public Bestandteil(String name, int[] snr) {
+	public Bestandteil(String name, Integer[] snr) {
 		this.name = name;			//Hier ist keine Überprüfung nötig da, der name und die snr aus
 		this.snr = snr;				//dem File ausgelesen werden, wenn der Monteur die Roboter zusammen baut.
 	}
