@@ -59,18 +59,18 @@ public class Fabrik {
 		/* LagerMitarbeiter */
 		
 		//erstellen des ThreadpoolExecutors und der zugehoerigen blockingqueue
-		BlockingQueue<Runnable> lagerMitarbeiterWorkQueue = new ArrayBlockingQueue<Runnable>(lagerMAnz/*Die kapazitaet*/) { /*Die blocking queque für den Threadpoolexecutor*/
-		};
+		//BlockingQueue<Runnable> lagerMitarbeiterWorkQueue = new ArrayBlockingQueue<Runnable>(lagerMAnz/*Die kapazitaet*/) { /*Die blocking queque für den Threadpoolexecutor*/
+		//};
 		
-		this.lagerMitarbeiterPool=new ThreadPoolExecutor(lagerMAnz, lagerMAnz, 1, TimeUnit.SECONDS, lagerMitarbeiterWorkQueue);
+		//this.lagerMitarbeiterPool=new ThreadPoolExecutor(lagerMAnz, lagerMAnz, 1, TimeUnit.SECONDS, lagerMitarbeiterWorkQueue);
 		//erstellung der Mitarbeiter
 		
 		//for(int i=0;i<lagerMAnz;i++){ /*auskommentiert da im moment nur ein lagermitarbeiter unterstuetzt wird*/
 		{
 			LagerMitarbeiter lg=new LagerMitarbeiter(sekretariat.getLagerMID(), lagerVerz);
-			this.lagerMitarbeiterPool.execute(lg);
+			//this.lagerMitarbeiterPool.execute(lg);
 			this.lagermitarbeiter=lg;
-			toWatch.add(lg); // Hinzufuegen zu der liste fuer den Watchdog
+			//toWatch.add(lg); // Hinzufuegen zu der liste fuer den Watchdog
 		}
 		//}
 		
