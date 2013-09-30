@@ -5,8 +5,8 @@ package ayvazyanbelinic;
  * Stellt ein Bestandteil des Roboters da.
  * Der Bestandteil wird vom Monteuer erzeugt wenn er den Roboter zusammen baut.
  * Den Namen und die Seriennummer werden aus dem File vom Monteur ausgelesen.
- * @author Vennesa Belinic
- * @version 2013-09-24
+ * @author Vennesa Belinic, Ari Ayvazyan
+ * @version 2013-09-3
  */
 public abstract class Bestandteil {
 
@@ -30,8 +30,8 @@ public abstract class Bestandteil {
 	
 	/**
 	 * Konstruktor mir Parameter
-	 * @param name Wert für das Attribut name
-	 * @param snr Werte für das Attribut snr[]
+	 * @param name Wert fuer das Attribut name
+	 * @param snr Werte fuer das Attribut snr[]
 	 */
 	public Bestandteil(String name, Integer[] snr) {
 		this.name = name;			//Hier ist keine Überprüfung nötig da, der name und die snr aus
@@ -40,7 +40,6 @@ public abstract class Bestandteil {
 	
 	
 	
-	//Methode(n)
 	
 	/**
 	 * Sortiert die Zahlen im Seriennumern-Array, mit dem Bubbel-Sort Algorithmus
@@ -61,7 +60,7 @@ public abstract class Bestandteil {
 	}
 
 	/**
-	 * Gibt den Bestandteil als String zurück, wie er dann später im File steht
+	 * Gibt den Bestandteil als String zurueck, wie er dann später im File steht
 	 */
 	@Override
 	public String toString() {
@@ -71,6 +70,17 @@ public abstract class Bestandteil {
 			temp += "," + snr[i];				//Beispiel: Auge,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
 			
 		return temp;
+	}
+
+
+	/**
+	 * Gegenteilige funktion von toString, hier wird anhand eines von toString erstellten Strings ein Bestandteil Objekt erstellt
+	 * @param eingelesen ist im selbem for mat wie die toString methode
+	 * @return gibt das bestandteil zu dem eingelesenen String zurueck, das bestandteil kann mit instanceof Auge, Rumpf und co zugeordnet werden
+	 */
+	public static Bestandteil getBestandTeil(String bestandTeilString) {
+		//TODO implementieren der funktion
+		return null;
 	}
 
 }
