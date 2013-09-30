@@ -95,6 +95,33 @@ public class LagerMitarbeiter{
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param bestandteil
+	 * @return
+	 */
+	public boolean zurueckgeben(Bestandteil bestandteil) {		//wird benötigt um angeforderte Bauteile zurückzugeben falls sie nicht brauchbar sind
+		return true;
+	}
+	
+	/**
+	 * 
+	 * @param bestandteil
+	 * @return
+	 */
+	public boolean liefern(Bestandteil bestandteil) {		//wird benötigt um Bestanteile zu liefern (Liefrerant)
+		return true;
+	}
+	
+	/**
+	 * 
+	 * @param roboter
+	 * @param monteur
+	 * @return
+	 */
+	public boolean liefern(Threadee roboter, Monteur monteur) {		//wird benötigt um fertig Roboter zu liefern (Monteur)
+		return true;
+	}
 
 
 }
