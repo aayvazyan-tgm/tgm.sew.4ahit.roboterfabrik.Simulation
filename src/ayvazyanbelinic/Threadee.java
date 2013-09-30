@@ -14,7 +14,6 @@ import java.util.HashSet;
 public class Threadee {
 
 	
-	//Attribut(e)
 	
 	
 	/**
@@ -45,7 +44,6 @@ public class Threadee {
 
 	
 	
-	//Konstruktor(en)
 	
 	/**
 	 * Konstruktor mit Parametern
@@ -53,7 +51,7 @@ public class Threadee {
 	 * @param bestandteile Die Bestandteile, als Bestanteil-Array
 	 */
 	public Threadee(HashSet<Long> id, Auge[] augen, Rumpf rumpf, Kettenantrieb antrieb, Arm[] arme) {
-		this.id = id;							//Hier ist keine Überprüfung nötig da die ID vom Sekretariat vergeben wird,
+		this.id = id;							//Hier ist keine ueberpruefung noetig da die ID vom Sekretariat vergeben wird,
 		this.augen = augen;						//und die Bestandteile vom Monteur, der die Daten vom Lagermitarbeiter bekommt.
 		this.rumpf = rumpf;
 		this.kettenantrieb = antrieb;
