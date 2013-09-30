@@ -3,6 +3,8 @@
  */
 package ayvazyanbelinic;
 
+import java.io.File;
+
 import org.apache.commons.cli2.*;
 import org.apache.commons.cli2.builder.*;
 import org.apache.commons.cli2.commandline.Parser;
@@ -11,9 +13,9 @@ import org.apache.commons.cli2.commandline.Parser;
 
 /**
  * Verwaltet die Optionen und deren Argumente.
- * Es sind 6 Optionen mÃ¶glich(--lager, --logs, --lieferanten, --monteure, --laufzeit, --lagermitarbeiter).
- * Alle Optionen bis auf --lagermitarbeiter sind verpflichtend.
- * Es gibt auchh von alle Optionen Kurzformen(siehe Field Summary).
+ * Es sind 5 Optionen möglich(--lager, --logs, --lieferanten, --monteure, --laufzeit).
+ * Alle Optionen sind verpflichtend.
+ * Es gibt auch von alle Optionen Kurzformen(siehe Field Summary).
  * Bei allen Optionen sind Argumente verpflichtend.
  * Bei den Argumenten von --lager und --logs handelt es sich um Strings, also Text,
  * bei allen anderen Optionen sind die Argumente Zahlen(Gueltigkeitsbereich siehe Field Summary).
@@ -52,11 +54,11 @@ public class MyCommandLine {
 	 */
 	private int monteurAnzahl;
 	
-	/**
-	 * Die Anzahl der Lagermitarbeiter Threads.
-	 * Langform: --lagermitarbeiter | Kurzform: -a
-	 * Gueltigkeitsbereich: min 1 , max 100000
-	 */
+//	/**
+//	 * Die Anzahl der Lagermitarbeiter Threads.
+//	 * Langform: --lagermitarbeiter | Kurzform: -a
+//	 * Gueltigkeitsbereich: min 1 , max 100000
+//	 */
 	private int lagerMitarbeiterAnzahl;
 	
 	/**
@@ -73,11 +75,11 @@ public class MyCommandLine {
 	
 	/**
 	 * Der Konstruktor initialisiert alle Attribut
-	 * @param args Dort befinden sich die Optionen und Argumente die vom CLI Ã¼bergeben werden
-	 * @throws IllegalNubmberOfLieferantenException Wird geworfen wenn, eine Ã¼ngÃ¼ltige Anzahl von Lieferanten eingegeben wurde
-	 * @throws IllegalNubmberOfMonteureException Wird geworfen wenn, eine Ã¼ngÃ¼ltige Anzahl von Monteuren eingegeben wurde
-	 * @throws IllegalLaufzeitException Wird geworfen wenn, eine Ã¼ngÃ¼ltige Laufzeit eingegeben wurde
-	 * @throws IllegalNumberOfLMException Wird geworfen wenn, eine Ã¼ngÃ¼ltige Anzahl von Lagermitarbeiter eingegeben wurde
+	 * @param args Dort befinden sich die Optionen und Argumente die vom CLI übergeben werden
+	 * @throws IllegalNubmberOfLieferantenException Wird geworfen wenn, eine üngültige Anzahl von Lieferanten eingegeben wurde
+	 * @throws IllegalNubmberOfMonteureException Wird geworfen wenn, eine üngültige Anzahl von Monteuren eingegeben wurde
+	 * @throws IllegalLaufzeitException Wird geworfen wenn, eine üngültige Laufzeit eingegeben wurde
+	 * @throws IllegalNumberOfLMException Wird geworfen wenn, eine üngültige Anzahl von Lagermitarbeiter eingegeben wurde
 	 */
 	public MyCommandLine(String[] args) throws OptionException{
 
@@ -122,11 +124,24 @@ public class MyCommandLine {
 		
 		CommandLine cl = parser.parse(args);
 		
-		if(cl.hasOption(oLagerVerzeichnis))
-			this.lagerVerzeichnis = (String) cl.getValue(oLagerVerzeichnis);
+		if(cl.hasOption(oLagerVerzeichnis)) {
+			String pfad = (String) cl.getValue(oLagerVerzeichnis);
+			File temp = new File(pfad);
+			if(temp.exists() && temp.isDirectory())
+				this.lagerVerzeichnis = pfad;
+			else
+				throw new IllegalArgumentException("Ungueltiger Pfad fuers Lager!");
+		}
 		
-		if(cl.hasOption(oLogVerzeichnis))
-			this.logVerzeichnis = (String) cl.getValue(oLogVerzeichnis);
+		if(cl.hasOption(oLogVerzeichnis)) {
+			String pfad = (String) cl.getValue(oLogVerzeichnis);
+			File temp = new File(pfad);
+			if(temp.exists() && temp.isDirectory())
+				this.logVerzeichnis = pfad;
+			else
+				throw new IllegalArgumentException("Ungueltiger Pfad fuer den Log-Ordner!");
+		}
+			
 			
 		if(cl.hasOption(oLieferantenAnzahl)) {
 			try {
@@ -177,7 +192,7 @@ public class MyCommandLine {
 	//Methode(n)
 	
 	/**
-	 * Gibt das Verzeichnis des Lagers als String zurÃ¼ck
+	 * Gibt das Verzeichnis des Lagers als String zurück
 	 * @return Verzeichnis des Lagers als String
 	 */
 	public String getLagerVerzeichnis() {
@@ -185,7 +200,7 @@ public class MyCommandLine {
 	}
 
 	/**
-	 * Gibt das Verzeichnis des Log-Files als String zurÃ¼ck
+	 * Gibt das Verzeichnis des Log-Files als String zurück
 	 * @return  Verzeichnis des Log-Files als String
 	 */
 	public String getLogVerzeichnis() {
@@ -193,7 +208,7 @@ public class MyCommandLine {
 	}
 
 	/**
-	 * Gibt die Anzahl der Lieferanten als int zurÃ¼ck
+	 * Gibt die Anzahl der Lieferanten als int zurück
 	 * @return Anzahl der Lieferanten als int
 	 */
 	public int getLieferantenAnzahl() {
@@ -201,7 +216,7 @@ public class MyCommandLine {
 	}
 
 	/**
-	 * Gibt die Anzahl der Monteure als int zurÃ¼ck
+	 * Gibt die Anzahl der Monteure als int zurück
 	 * @return Anzahl der Monteure als int
 	 */
 	public int getMonteurAnzahl() {
@@ -209,7 +224,7 @@ public class MyCommandLine {
 	}
 	
 	/**
-	 * Gibt die Anzahl der LagerMitarbeiter als int zurÃ¼ck
+	 * Gibt die Anzahl der LagerMitarbeiter als int zurück
 	 * @return Anzahl der LagerMitarbeiter als int
 	 */
 	public int getLagerMitarbeiterAnzahl() {
@@ -217,7 +232,7 @@ public class MyCommandLine {
 	}
 
 	/**
-	 * Gibt die Lafzeit in Millisekunden als int zurÃ¼ck
+	 * Gibt die Lafzeit in Millisekunden als int zurück
 	 * @return Lafzeit in Millisekunden als int
 	 */
 	public int getLaufzeit() {
@@ -226,4 +241,3 @@ public class MyCommandLine {
 
 		
 }
-
