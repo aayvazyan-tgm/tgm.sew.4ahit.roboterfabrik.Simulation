@@ -82,6 +82,15 @@ public class Lieferant implements Stoppable {
 			//lagerM.  //Liefere das erstellte teil aus.
 
 		}
+		if(bestandteilname.equalsIgnoreCase("Rumpf")){
+			
+		}
+		if(bestandteilname.equalsIgnoreCase("Auge")){
+			
+		}
+		if(bestandteilname.equalsIgnoreCase("Kettenantrieb")){
+			
+		}
 	}
 
 	/**
