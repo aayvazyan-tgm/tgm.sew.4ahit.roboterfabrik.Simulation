@@ -2,6 +2,7 @@ package ayvazyanbelinic;
 
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Random;
 
 
 /**
@@ -35,8 +36,10 @@ public class Sekretariat {
 	 */
 	private LinkedList<Long> threadeeID;
 
-	
-	
+	/**
+	 * Eine liste sämtlicher vergebener Ids fuer die Bauteile
+	 */
+	private HashSet<HashSet<Integer>> bauteilIDs;
 	
 	
 	/**
@@ -110,5 +113,20 @@ public class Sekretariat {
 		this.threadeeID.set(this.threadeeID.size()-1,this.threadeeID.getLast()+1);
 		return (LinkedList<Long>) threadeeID.clone(); //Klont die Liste
 	}
-
+	public synchronized Integer[] getBauTeilID() {
+		boolean erfolg=true;
+		Random r=new Random(/*this.seed*/);
+		HashSet<Integer> neueID;
+		do{
+			neueID=new HashSet<Integer>();
+			for(int i=0;i<10;i++){
+				boolean erfolg2=true;
+				do{
+					erfolg2=neueID.add(r.nextInt(1000));
+				}while(!erfolg2);
+			}
+			erfolg=this.bauteilIDs.add(neueID);
+		}while(!erfolg);
+		return (Integer[]) neueID.toArray(); //Klont die Liste
+	}
 }
