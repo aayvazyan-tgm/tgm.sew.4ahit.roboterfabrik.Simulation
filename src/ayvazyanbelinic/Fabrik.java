@@ -85,7 +85,7 @@ public class Fabrik {
 		
 		//erstellung der Mitarbeiter
 		for(int i=0;i<lieferantenAnz;i++){
-			Lieferant lf=new Lieferant(sekretariat.getLieferantenID(), lagerVerz, this.lagermitarbeiter);
+			Lieferant lf=new Lieferant(sekretariat.getLieferantenID(), lagerVerz, this.lagermitarbeiter, sekretariat);
 			this.lieferantenPool.execute(lf);
 			toWatch.add(lf); // Hinzufuegen zu der liste fuer den Watchdog
 		}
