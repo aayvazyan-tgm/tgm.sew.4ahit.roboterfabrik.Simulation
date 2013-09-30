@@ -119,7 +119,7 @@ public class Sekretariat {
 		HashSet<Integer> neueID;
 		do{
 			neueID=new HashSet<Integer>();
-			for(int i=0;i<10;i++){
+			for(int i=0;i<20;i++){
 				boolean erfolg2=true;
 				do{
 					erfolg2=neueID.add(r.nextInt(1000));
