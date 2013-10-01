@@ -68,7 +68,7 @@ public class LagerMitarbeiter{
 			return getBestandTeilvonFile(f);
 		}
 		if(bestandteilname.equalsIgnoreCase("Kettenantrieb")){
-			File f=new File(lagerVerzeichnis+File.pathSeparator+"kettenantrieb.csv");
+			File f=new File(lagerVerzeichnis+File.pathSeparator+"kettenantriebe.csv");
 			return getBestandTeilvonFile(f);
 		}
 		return null; //gibt null zurueck falls der bestandteilname nicht gefunden wird
@@ -91,7 +91,7 @@ public class LagerMitarbeiter{
 			BufferedWriter out = new BufferedWriter(fileStream);
 			while(fileScanner.hasNextLine()) { //schreibe die Datei ohne den bestandteil neu
 			    String next = fileScanner.nextLine();
-			    if(next.equals("\n")) out.newLine();
+			    if(next.equals("\n")) out.newLine(); //eig. nicht noetig, trotzdem zur fehlertolleranz eingebunden
 			    else out.write(next);
 			    out.newLine();   
 			}
@@ -121,6 +121,28 @@ public class LagerMitarbeiter{
 	public synchronized boolean einlagern(Bestandteil bestandteil) {
 		Logger logger=Logger.getLogger("Arbeitsverlauf");
 		logger.log(Level.INFO, "Bestandteil eingelagert: "+bestandteil.toString());
+		File f=new File("");
+		if(bestandteil instanceof Arm){
+			f=new File(lagerVerzeichnis+File.pathSeparator+"arme.csv");
+		}
+		if(bestandteil instanceof Rumpf){
+			f=new File(lagerVerzeichnis+File.pathSeparator+"rumpf.csv");
+		}
+		if(bestandteil instanceof Auge){
+			f=new File(lagerVerzeichnis+File.pathSeparator+"augen.csv");
+		}
+		if(bestandteil instanceof Kettenantrieb){
+			f=new File(lagerVerzeichnis+File.pathSeparator+"kettenantriebe.csv");
+		}
+		try{
+			FileWriter fileStream = new FileWriter(f);
+			BufferedWriter out = new BufferedWriter(fileStream);
+			out.write(bestandteil.toString());
+			out.newLine();
+			out.close();
+		}catch(Exception e){
+			return false;
+		}
 		return true;
 	}
 	
@@ -130,6 +152,19 @@ public class LagerMitarbeiter{
 	 * @return
 	 */
 	public boolean einlagern(Threadee roboter) {
+		Logger logger=Logger.getLogger("Arbeitsverlauf");
+		logger.log(Level.INFO, "Threadee eingelagert: "+"ROBONAME");
+		File f=new File("");
+		f=new File(lagerVerzeichnis+File.pathSeparator+"kettenantriebe.csv");
+		try{
+			FileWriter fileStream = new FileWriter(f);
+			BufferedWriter out = new BufferedWriter(fileStream);
+			out.write("ROBONAME");
+			out.newLine();
+			out.close();
+		}catch(Exception e){
+			return false;
+		}
 		return true;
 	}
 
