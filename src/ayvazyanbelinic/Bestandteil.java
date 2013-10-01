@@ -74,13 +74,42 @@ public abstract class Bestandteil {
 
 
 	/**
-	 * Gegenteilige funktion von toString, hier wird anhand eines von toString erstellten Strings ein Bestandteil Objekt erstellt
+	 * Gegenteilige funktion von toString. 
+	 * Hier wird anhand eines von toString erstellten Strings ein vom Bestandteil erbendes Objekt erzeugt.
 	 * @param eingelesen ist im selbem for mat wie die toString methode
-	 * @return gibt das bestandteil zu dem eingelesenen String zurueck, das bestandteil kann mit instanceof Auge, Rumpf und co zugeordnet werden
+	 * @return gibt das bestandteil zu dem eingelesenen String zurueck, das bestandteil kann mit 
+	 * instanceof Auge, Rumpf und co zugeordnet werden. Wenn etwas beim Verarbeiten schief laeuft 
+	 * wird null zurückgegeben.
 	 */
 	public static Bestandteil getBestandTeil(String bestandTeilString) {
-		//TODO implementieren der funktion
-		return null;
+		String [] teil = bestandTeilString.split(",");
+		String name = teil[0];
+		Integer[] snr = new Integer[20];
+		
+		for(int i = 1; i < teil.length; i++) {		//Die Zahlen werden in die Seriennummer gespeichert.
+			try {
+				snr[i-1] = Integer.parseInt(teil[i]);
+			} catch(NumberFormatException e) {		//Wenn die Strings keine Zahlen sind wird eine Fehlermeldung zurückgegeben
+				name = "";							//und der Name auf "" gesetzt damit null returned wird.
+				System.out.println("Es ist ein Fehler beim Verarbeiten der Bestanteile entstanden");
+			}
+		}
+		
+		Bestandteil temp = null;		//Wird mit null initialisiert damit wenn Fehler auftreten
+										//null zurückgegeben wird.
+		if(name.equals("Auge"))
+			temp = new Auge(snr);
+		
+		if(name.equals("Rumpf"))
+			temp = new Rumpf(snr);
+		
+		if(name.equals("Kettenantrieb"))
+			temp = new Kettenantrieb(snr);
+		
+		if(name.equals("Arm"))
+			temp = new Arm(snr);
+		
+		return temp;
 	}
 
 }

@@ -96,5 +96,48 @@ public class TestBestandteil {
 		teil.sortieren();
 		assertEquals("Rumpf,0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100" , teil.toString());
 	}
+	
+	/**
+	 * Testet die getBestandTeil-Methode im Normalfall
+	 */
+	@Test
+	public void testGetBestandTeil_1() {
+		Bestandteil teil = Bestandteil.getBestandTeil("Auge,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7");
+		assertEquals("Auge,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7", teil.toString());
+	}
+	
+	/**
+	 * Testet die getBestandTeil-Methode im Normalfall
+	 */
+	@Test
+	public void testGetBestandTeil_2() {
+		Bestandteil teil = Bestandteil.getBestandTeil("Rumpf,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7");
+		assertEquals("Rumpf,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7", teil.toString());
+	}
+	
+	/**
+	 * Testet die getBestandTeil-Methode im Normalfall
+	 */
+	@Test
+	public void testGetBestandTeil_3() {
+		Bestandteil teil = Bestandteil.getBestandTeil("Kettenantrieb,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7");
+		assertEquals("Kettenantrieb,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7", teil.toString());
+	}
+	
+	/**
+	 * Testet die getBestandTeil-Methode im Normalfall
+	 */
+	@Test
+	public void testGetBestandTeil_4() {
+		Bestandteil teil = Bestandteil.getBestandTeil("Arm,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7");
+		assertEquals("Arm,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7", teil.toString());
+	}
 
+	/**
+	 * Testet die getBestandTeil-Methode im Fehlerfall der eigentlich nie auftreten sollte.
+	 */
+	@Test
+	public void testGetBestandTeil_5() {
+		assertNull(Bestandteil.getBestandTeil("Arm,b,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7"));
+	}
 }
