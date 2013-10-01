@@ -101,7 +101,7 @@ public class Monteur implements Stoppable {
 	@Override
 	public void run() {
 		Logger logger=Logger.getLogger("Arbeitsverlauf");
-		long arbeitsgeschwindigkeit=100l; 			//in Millisekunden
+		long arbeitsgeschwindigkeit=600l; 			//in Millisekunden
 		
 		while(!stop) {
 			try {
