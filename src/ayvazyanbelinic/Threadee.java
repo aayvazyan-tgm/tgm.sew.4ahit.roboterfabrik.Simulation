@@ -8,7 +8,7 @@ import java.util.LinkedList;
  * Die Threadees werden erst vom Monteur erzeugt wenn er die Bestandteile
  * zusammen gebaut hat. Die ID bekommt der Threadee von der Sekretariat Klasse.
  * @author Vennesa Belinic
- * @version 2013-09-25
+ * @version 2013-10-01
  */
 public class Threadee {
 
@@ -40,6 +40,11 @@ public class Threadee {
 	 * Wird ihm vom der Klasse Sekretariat zugewiesen.
 	 */
 	private LinkedList<Long> id;
+	
+	/**
+	 * Die ID des Monteurs, der den Threadee zusammenbaut
+	 */
+	private LinkedList<Long> mID;
 
 	
 	
@@ -55,6 +60,35 @@ public class Threadee {
 		this.rumpf = rumpf;
 		this.kettenantrieb = antrieb;
 		this.arme = arme;
+	}
+	
+	/**
+	 * Gibt die ID zurueck
+	 */
+	public LinkedList<Long> getID() {
+		return id;
+	}
+	
+	
+	/**
+	 * Setzt die ID des Monteurs
+	 * @param id Die ID die für die Monteur-ID gesetzt wird
+	 */
+	public void setMID(LinkedList<Long> id) {
+		this.mID = id;
+	}
+	
+	/**
+	 * Gibt das Threadee mit dem Monteur und den Bestandteilen als String zurueck
+	 * @return Gibt alle Informationen zum Threadee in dieser Form zurueck:
+	 * Threadee:ID;Monteur:ID;Auge,1,2,...;Rump,1,78,9,..
+	 */
+	@Override
+	public String toString() {
+		return ("Threadee:" + Sekretariat.idToString(id) + ";" + "Monteur:" + Sekretariat.idToString(mID) + ";"
+				+ augen[0].toString() + ";" + augen[1].toString() + ";" + rumpf.toString() + ";" + kettenantrieb.toString()
+				+ ";" + arme[0].toString() + ";" + arme[1].toString());
+		
 	}
 
 }
