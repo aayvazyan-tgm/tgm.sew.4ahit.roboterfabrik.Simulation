@@ -57,6 +57,8 @@ public class Sekretariat {
 		
 		this.threadeeID=new LinkedList<Long>();
 		this.threadeeID.add(0l);
+		
+		this.bauteilIDs=new HashSet<HashSet<Integer>>();
 	}
 
 	
