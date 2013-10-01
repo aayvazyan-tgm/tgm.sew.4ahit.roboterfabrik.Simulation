@@ -59,7 +59,7 @@ public class Lieferant implements Stoppable {
 	 */
 	public Lieferant(LinkedList<Long> id, String lagerVerzeichnis, LagerMitarbeiter lagerM,Sekretariat sekretariat) {
 		this.id=id;
-		this.seed=1337l;
+		this.seed=new Random().nextLong();//kann angepasst werden
 		this.lagerM=lagerM;
 		this.lagerVerz=lagerVerzeichnis;
 		this.sekretariat=sekretariat;
