@@ -83,13 +83,19 @@ public class Lieferant implements Stoppable {
 
 		}
 		if(bestandteilname.equalsIgnoreCase("Rumpf")){
-			
+			Rumpf bestandteil=new Rumpf(this.sekretariat.getBauTeilID()); //erstelle einen neuen Rumpf mit der vom Sektretariat vergebenen ID
+			logger.log(Level.INFO, "Neues Teil an einen Lagermitarbeiter geliefert: "+bestandteil.toString());
+			lagerM.einlagern(bestandteil);
 		}
 		if(bestandteilname.equalsIgnoreCase("Auge")){
-			
+			Auge bestandteil=new Auge(this.sekretariat.getBauTeilID()); //erstelle ein neues Auge mit der vom Sektretariat vergebenen ID
+			logger.log(Level.INFO, "Neues Teil an einen Lagermitarbeiter geliefert: "+bestandteil.toString());
+			lagerM.einlagern(bestandteil);
 		}
 		if(bestandteilname.equalsIgnoreCase("Kettenantrieb")){
-			
+			Kettenantrieb bestandteil=new Kettenantrieb(this.sekretariat.getBauTeilID()); //erstelle einen neuen Kettenantrieb mit der vom Sektretariat vergebenen ID
+			logger.log(Level.INFO, "Neues Teil an einen Lagermitarbeiter geliefert: "+bestandteil.toString());
+			lagerM.einlagern(bestandteil);
 		}
 	}
 
