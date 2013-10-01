@@ -138,7 +138,7 @@ public class Sekretariat {
 	 * @param id die umzuwandelnde ID
 	 * @return ein String in bindestrich getrenntem Format. zb(9999999-414)
 	 */
-	public static String IDtoSting(LinkedList<Long> id) {
+	public static String idToSting(LinkedList<Long> id) {
 		String erg="";
 		boolean first=true;
 		for(long l:id){

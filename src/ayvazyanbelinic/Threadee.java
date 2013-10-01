@@ -40,6 +40,11 @@ public class Threadee {
 	 * Wird ihm vom der Klasse Sekretariat zugewiesen.
 	 */
 	private LinkedList<Long> id;
+	
+	/**
+	 * Die ID des Monteurs
+	 */
+	private LinkedList<Long> mID;
 
 	
 	
@@ -55,6 +60,29 @@ public class Threadee {
 		this.rumpf = rumpf;
 		this.kettenantrieb = antrieb;
 		this.arme = arme;
+	}
+	
+	/**
+	 * Gibt die ID zurueck
+	 */
+	public LinkedList<Long> getID() {
+		return id;
+	}
+	
+	
+	/**
+	 * 
+	 */
+	public void setMID(LinkedList<Long> id) {
+		
+	}
+	
+	/**
+	 * 
+	 */
+	@Override
+	public String toString() {
+		return null;
 	}
 
 }
