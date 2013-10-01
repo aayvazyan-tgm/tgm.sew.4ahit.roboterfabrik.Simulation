@@ -78,7 +78,7 @@ public class Monteur implements Stoppable {
 			Auge[] augen = {auge1, auge2};
 			Arm[] arme = {arm1, arm2};
 			
-			Threadee temp = new Threadee(sekretariat.getThreadeeID(), augen, rumpf, antrieb, arme);
+			Threadee temp = new Threadee(this.id,sekretariat.getThreadeeID(), augen, rumpf, antrieb, arme);
 			logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat neuen Threadee:" + Sekretariat.idToString(temp.getID()) + " zusammengebaut");
 			return temp;
 		} else {
@@ -101,7 +101,7 @@ public class Monteur implements Stoppable {
 	@Override
 	public void run() {
 		Logger logger=Logger.getLogger("Arbeitsverlauf");
-		long arbeitsgeschwindigkeit=600l; 			//in Millisekunden
+		long arbeitsgeschwindigkeit=100l; 			//in Millisekunden
 		
 		while(!stop) {
 			try {
@@ -167,7 +167,6 @@ public class Monteur implements Stoppable {
 					try {
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} //kurze pause vor dem naechstem versuch
 					liefern = lagermitarbeiter.einlagern(roboter);
