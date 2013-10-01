@@ -12,10 +12,10 @@ public class Arm extends Bestandteil {
 	
 	/**
 	 * Führt den Konstruktor der Superklasse aus mit dem name: Arm
-	 * @param snr Werte für das Attribut snr[] aus der Superclasse
+	 * @param integers Werte für das Attribut snr[] aus der Superclasse
 	 */
-	public Arm(int[] snr) {
-		super("Arm", snr);
+	public Arm(Integer[] integers) {
+		super("Arm", integers);
 	}
 
 }

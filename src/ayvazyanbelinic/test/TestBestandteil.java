@@ -32,7 +32,7 @@ public class TestBestandteil {
 	 */
 	@Test
 	public void testBestandteil_1() {
-		int[] s = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+		Integer[] s = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 		teil = new Auge(s);
 		assertNotNull(teil);
 	}
@@ -42,7 +42,7 @@ public class TestBestandteil {
 	 */
 	@Test
 	public void testToString_1() {
-		int[] s = {6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7};
+		Integer[] s = {6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7};
 		teil = new Auge(s);
 		assertEquals("Auge,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7", teil.toString());
 	}
@@ -52,7 +52,7 @@ public class TestBestandteil {
 	 */
 	@Test
 	public void testToString_2() {
-		int[] sortiert = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
+		Integer[] sortiert = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
 		teil = new Kettenantrieb(sortiert);
 		assertEquals("Kettenantrieb,0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100", teil.toString());
 	}
@@ -67,8 +67,8 @@ public class TestBestandteil {
 	 */
 	@Test
 	public void testSortieren_1() {
-		int[] s = {6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7};
-		int[] sortiert = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
+		Integer[] s = {6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7};
+		Integer[] sortiert = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
 		teil = new Arm(s);
 		teil.sortieren();
 		assertEquals("Arm,0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100", teil.toString());
@@ -79,7 +79,7 @@ public class TestBestandteil {
 	 */
 	@Test
 	public void testSortieren_2() {
-		int[] sortiert = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
+		Integer[] sortiert = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
 		teil = new Rumpf(sortiert);
 		teil.sortieren();
 		assertEquals("Rumpf,0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100", teil.toString());
@@ -90,11 +90,54 @@ public class TestBestandteil {
 	 */
 	@Test
 	public void testSortieren_3() {
-		int[] s = {100,99,98,61,57,52,33,31,20,19,18,14,11,10,7,6,5,2,1,0};
-		int[] sortiert = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
+		Integer[] s = {100,99,98,61,57,52,33,31,20,19,18,14,11,10,7,6,5,2,1,0};
+		Integer[] sortiert = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
 		teil = new Rumpf(s);
 		teil.sortieren();
 		assertEquals("Rumpf,0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100" , teil.toString());
 	}
+	
+	/**
+	 * Testet die getBestandTeil-Methode im Normalfall
+	 */
+	@Test
+	public void testGetBestandTeil_1() {
+		Bestandteil teil = Bestandteil.getBestandTeil("Auge,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7");
+		assertEquals("Auge,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7", teil.toString());
+	}
+	
+	/**
+	 * Testet die getBestandTeil-Methode im Normalfall
+	 */
+	@Test
+	public void testGetBestandTeil_2() {
+		Bestandteil teil = Bestandteil.getBestandTeil("Rumpf,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7");
+		assertEquals("Rumpf,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7", teil.toString());
+	}
+	
+	/**
+	 * Testet die getBestandTeil-Methode im Normalfall
+	 */
+	@Test
+	public void testGetBestandTeil_3() {
+		Bestandteil teil = Bestandteil.getBestandTeil("Kettenantrieb,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7");
+		assertEquals("Kettenantrieb,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7", teil.toString());
+	}
+	
+	/**
+	 * Testet die getBestandTeil-Methode im Normalfall
+	 */
+	@Test
+	public void testGetBestandTeil_4() {
+		Bestandteil teil = Bestandteil.getBestandTeil("Arm,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7");
+		assertEquals("Arm,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7", teil.toString());
+	}
 
+	/**
+	 * Testet die getBestandTeil-Methode im Fehlerfall der eigentlich nie auftreten sollte.
+	 */
+	@Test
+	public void testGetBestandTeil_5() {
+		assertNull(Bestandteil.getBestandTeil("Arm,b,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7"));
+	}
 }

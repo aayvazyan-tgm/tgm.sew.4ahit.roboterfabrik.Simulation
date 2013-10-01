@@ -17,7 +17,7 @@ public class Auge extends Bestandteil {
 	 * Führt den Konstruktor der Superklasse aus mit dem name: Auge
 	 * @param snr Werte für das Attribut snr[] aus der Superclasse
 	 */
-	public Auge(int[] snr) {
+	public Auge(Integer[] snr) {
 		super("Auge", snr);
 	}
 
