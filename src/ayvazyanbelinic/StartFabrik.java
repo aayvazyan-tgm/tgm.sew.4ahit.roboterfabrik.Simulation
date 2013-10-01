@@ -1,6 +1,8 @@
 package ayvazyanbelinic;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import org.apache.commons.cli2.OptionException;
 import org.apache.log4j.*;
@@ -22,15 +24,22 @@ public class StartFabrik {
 		try {
 			MyCommandLine m=new MyCommandLine(args);//Verarbeitet die argumente
 			
-			FileAppender ap=new FileAppender(); //ein appender wird für die Log Datei erstellt
-			ap.setFile(m.getLogVerzeichnis()+File.separator+"log.txt"); //die Datei fuer den appender wird gesetzt
-			BasicConfigurator.configure(ap);  //der appender wird dem logger zugewiesen
+			FileAppender ap;
+			try {
+				ap = new FileAppender(new SimpleLayout(), m.getLogVerzeichnis()+File.separator+"log.txt", false); //erstellt einene neuen appender fuer log4J
+				BasicConfigurator.configure(ap);  //der appender wird dem logger zugewiesen
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+			
 			Logger lg=Logger.getLogger("Arbeitsverlauf"); //Im Arbeitsverlauf finden sich saemtliche aktivitaeten innerhalb der Fabrik
 			
 			lg.log(Level.INFO, "Der Betrieb wird aufgenommen");
 			new Fabrik(m.getLagerVerzeichnis(), m.getLieferantenAnzahl(), m.getMonteurAnzahl(), m.getLagerMitarbeiterAnzahl(), m.getLaufzeit());
 			lg.log(Level.INFO, "Der Betrieb wurde aufgenommen");
-			
+			//ap.close();
+			//LogManager.shutdown();
 		} catch(OptionException e) {
 			System.out.println("Es ist ein Fehler beim Verarbeiten aufgetreten!\n" +
 					"Entweder sind nicht alle verpflichtenden Optionen und deren Argument angegeben,\n" +
