@@ -34,7 +34,7 @@ public class TestMyCommandLine {
 	
 	/**
 	 * Testet den Konstruktor.
-	 * Normalfall(alle möglichen Optionen vorhanden mit gueltigen Werten der Argumente)
+	 * Normalfall(alle moeglichen Optionen vorhanden mit gueltigen Werten der Argumente)
 	 */
 	@Test
 	public void testMyCommandLine_2() {
@@ -50,7 +50,7 @@ public class TestMyCommandLine {
 	
 	/**
 	 * Testet den Konstruktor.
-	 * Fehlerfall(alle möglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --lieferant))
+	 * Fehlerfall(alle moeglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --lieferant))
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public void testMyCommandLine_3() {
@@ -66,7 +66,7 @@ public class TestMyCommandLine {
 	
 	/**
 	 * Testet den Konstruktor.
-	 * Fehlerfall(alle möglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --monteur))
+	 * Fehlerfall(alle moeglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --monteur))
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public void testMyCommandLine_4() {
@@ -82,7 +82,7 @@ public class TestMyCommandLine {
 	
 	/**
 	 * Testet den Konstruktor.
-	 * Fehlerfall(alle möglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --laufzeit))
+	 * Fehlerfall(alle moeglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --laufzeit))
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public void testMyCommandLine_5() {
@@ -98,7 +98,7 @@ public class TestMyCommandLine {
 	
 	/**
 	 * Testet den Konstruktor.
-	 * Fehlerfall(alle möglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --lagermitarbeiter))
+	 * Fehlerfall(alle moeglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --lagermitarbeiter))
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public void testMyCommandLine_6() {
@@ -114,7 +114,7 @@ public class TestMyCommandLine {
 	
 	/**
 	 * Testet den Konstruktor.
-	 * Fehlerfall(alle möglichen Optionen fehlen)
+	 * Fehlerfall(alle moeglichen Optionen fehlen)
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public void testMyCommandLine_7() {
@@ -129,7 +129,7 @@ public class TestMyCommandLine {
 
 	/**
 	 * Testet den Konstruktor.
-	 * Fehlerfall(alle möglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --lieferant))
+	 * Fehlerfall(alle moeglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --lieferant))
 	 */
 	@Test
 	public void testMyCommandLine_8() {
@@ -145,7 +145,7 @@ public class TestMyCommandLine {
 
 	/**
 	 * Testet den Konstruktor.
-	 * Fehlerfall(alle möglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --monteur))
+	 * Fehlerfall(alle moeglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --monteur))
 	 */
 	@Test
 	public void testMyCommandLine_9() {
@@ -161,7 +161,7 @@ public class TestMyCommandLine {
 
 	/**
 	 * Testet den Konstruktor.
-	 * Fehlerfall(alle möglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --laufzeit))
+	 * Fehlerfall(alle moeglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --laufzeit))
 	 */
 	@Test
 	public void testMyCommandLine_10() {
@@ -177,7 +177,7 @@ public class TestMyCommandLine {
 
 	/**
 	 * Testet den Konstruktor.
-	 * Fehlerfall(alle möglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --lagermitarbeiter))
+	 * Fehlerfall(alle moeglichen Optionen vorhanden, mit ungueltigen Werten der Argumente(bei --lagermitarbeiter))
 	 */
 	@Test
 	public void testMyCommandLine_11() {

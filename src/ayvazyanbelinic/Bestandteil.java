@@ -6,7 +6,7 @@ package ayvazyanbelinic;
  * Der Bestandteil wird vom Monteuer erzeugt wenn er den Roboter zusammen baut.
  * Den Namen und die Seriennummer werden aus dem File vom Monteur ausgelesen.
  * @author Vennesa Belinic, Ari Ayvazyan
- * @version 2013-09-3
+ * @version 2013-10-01
  */
 public abstract class Bestandteil {
 
@@ -20,7 +20,7 @@ public abstract class Bestandteil {
 	private String name;
 	
 	/**
-	 * Die Seriennummer, in Form von 20 ganzstelligen zufälligen Zahlen(mit max 3 Stellen).
+	 * Die Seriennummer, in Form von 20 ganzstelligen zufaelligen Zahlen(mit max 3 Stellen).
 	 */
 	private Integer[] snr;
 
@@ -34,7 +34,7 @@ public abstract class Bestandteil {
 	 * @param snr Werte fuer das Attribut snr[]
 	 */
 	public Bestandteil(String name, Integer[] snr) {
-		this.name = name;			//Hier ist keine Überprüfung nötig da, der name und die snr aus
+		this.name = name;			//Hier ist keine Ueberpruefung noetig da, der name und die snr aus
 		this.snr = snr;				//dem File ausgelesen werden, wenn der Monteur die Roboter zusammen baut.
 	}
 	
@@ -50,8 +50,8 @@ public abstract class Bestandteil {
         
         for(int counter = 0; counter < laenge-1; counter++) {		//Bubble-Sort Algorithmus
             for(int i = 0; i < laenge-1; i++) {
-                if(snr[i] > snr[i+1]) {					//Wenn die aktuelle zahl snr[i] größer ist 
-                    temp = snr[i];						//als die nächste, werden sie vertauscht.
+                if(snr[i] > snr[i+1]) {					//Wenn die aktuelle zahl snr[i] groesser ist 
+                    temp = snr[i];						//als die naechste, werden sie vertauscht.
                     snr[i] = snr[i+1];
                     snr[i+1] = temp;
                 }
