@@ -100,7 +100,7 @@ public class Fabrik {
 		this.monteurPool=new ThreadPoolExecutor(monteurAnz, monteurAnz, 5, TimeUnit.SECONDS, monteureWorkQueue);
 		//erstellung der Mitarbeiter
 		for(int i=0;i<lieferantenAnz;i++){
-			Monteur m=new Monteur(sekretariat.getMonteurID(), this.lagermitarbeiter);
+			Monteur m=new Monteur(sekretariat.getMonteurID(), this.lagermitarbeiter, this.sekretariat);
 			this.monteurPool.execute(m);
 			toWatch.add(m); // Hinzufuegen zu der liste fuer den Watchdog
 		}

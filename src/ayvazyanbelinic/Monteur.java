@@ -98,45 +98,58 @@ public class Monteur implements Stoppable {
 				e.printStackTrace();
 			}
 			
-			Auge auge1, auge2;
-			Rumpf rumpf;
-			Kettenantrieb antrieb;
-			Arm arm1, arm2;
-			Bestandteil temp;
+			boolean alleVorhanden = true;
 			
-			do {
-				temp = lagermitarbeiter.getBestandteil("Auge");
+			Auge auge1 = null, auge2 = null;
+			Rumpf rumpf = null;
+			Kettenantrieb antrieb = null;
+			Arm arm1 = null, arm2 = null;
+			
+			Bestandteil temp = lagermitarbeiter.getBestandteil("Auge");
+			
+			if(!(temp != null && temp instanceof  Auge))
 				auge1 = (Auge) temp;
-			} while(!(temp != null && temp instanceof  Auge));
+			else
+				alleVorhanden = false;
 			
-			do {
-				temp = lagermitarbeiter.getBestandteil("Auge");
+			temp = lagermitarbeiter.getBestandteil("Auge");
+			if(!(temp != null && temp instanceof  Auge))
 				auge2 = (Auge) temp;
-			} while(!(temp != null && temp instanceof  Auge));
-			
-			do {
-				temp = lagermitarbeiter.getBestandteil("Rumpf");
+			else
+				alleVorhanden = false;
+
+			temp = lagermitarbeiter.getBestandteil("Rumpf");
+			if(!(temp != null && temp instanceof  Rumpf))
 				rumpf = (Rumpf) temp;
-			} while(!(temp != null && temp instanceof  Rumpf));
+			else
+				alleVorhanden = false;
 			
-			do {
-				temp = lagermitarbeiter.getBestandteil("Kettenantrieb");
+			temp = lagermitarbeiter.getBestandteil("Kettenantrieb");
+			if(!(temp != null && temp instanceof  Kettenantrieb))
 				antrieb = (Kettenantrieb) temp;
-			} while(!(temp != null && temp instanceof  Kettenantrieb));
+			else
+				alleVorhanden = false;
 			
-			do {
-				temp = lagermitarbeiter.getBestandteil("Arm");
+			temp = lagermitarbeiter.getBestandteil("Arm");
+			if(!(temp != null && temp instanceof  Arm))
 				arm1 = (Arm) temp;
-			} while(!(temp != null && temp instanceof  Arm));
+			else
+				alleVorhanden = false;
 			
-			do {
-				temp = lagermitarbeiter.getBestandteil("Arm");
-				arm2 = (Arm) temp;
-			} while(!(temp != null && temp instanceof  Arm));
+			temp = lagermitarbeiter.getBestandteil("Arm");
+			if(!(temp != null && temp instanceof  Arm))
+				arm1 = (Arm) temp;
+			else
+				alleVorhanden = false;
 			
-			Threadee roboter = zusammenbauen(auge1,auge2,rumpf,antrieb,arm1,arm2);
-			if(roboter != null)
-				lagermitarbeiter.liefern(roboter, this);
+			if(alleVorhanden) {
+				Threadee roboter = zusammenbauen(auge1,auge2,rumpf,antrieb,arm1,arm2);
+				if(roboter != null)
+					lagermitarbeiter.liefern(roboter, this);
+				
+				//Noch nicht fertig
+			}
+			
 			
 		}
 		

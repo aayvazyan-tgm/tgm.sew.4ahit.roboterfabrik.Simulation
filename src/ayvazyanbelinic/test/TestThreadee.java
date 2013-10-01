@@ -4,11 +4,9 @@
 package ayvazyanbelinic.test;
 
 import static org.junit.Assert.*;
-
-import java.util.HashMap;
-import java.util.HashSet;
-
+import java.util.LinkedList;
 import org.junit.Test;
+
 import ayvazyanbelinic.*;
 
 /**
@@ -19,7 +17,7 @@ import ayvazyanbelinic.*;
 public class TestThreadee {
 
 	/**
-	 * Testet den Konstruktor(weitere TestfÃ¤lle sind nicht nÃ¶tig Grund siehe Dokumentation Threadee)
+	 * Testet den Konstruktor(weitere Testfälle sind nicht nötig Grund siehe Dokumentation Threadee)
 	 */
 	@Test
 	public void testThreadee() {
@@ -35,7 +33,7 @@ public class TestThreadee {
 		Arm[] arme = new Arm[2];
 		arme[0] = new Arm(s3);
 		arme[0] = new Arm(s4);
-		HashSet<Long> id = new HashSet<Long>();
+		LinkedList<Long> id = new LinkedList<Long>();
 		id.add(1l);
 		assertNotNull(new Threadee(id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme));
 	}
