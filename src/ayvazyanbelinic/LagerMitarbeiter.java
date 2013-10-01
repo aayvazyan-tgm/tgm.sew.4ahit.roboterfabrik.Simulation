@@ -122,23 +122,34 @@ public class LagerMitarbeiter{
 		Logger logger=Logger.getLogger("Arbeitsverlauf");
 		File f=new File("");
 		if(bestandteil instanceof Arm){
-			f=new File(lagerVerzeichnis+File.pathSeparator+"arme.csv");
+			f=new File(lagerVerzeichnis+File.separator+"arme.csv");
 		}
 		if(bestandteil instanceof Rumpf){
-			f=new File(lagerVerzeichnis+File.pathSeparator+"rumpf.csv");
+			f=new File(lagerVerzeichnis+File.separator+"rumpf.csv");
 		}
 		if(bestandteil instanceof Auge){
-			f=new File(lagerVerzeichnis+File.pathSeparator+"augen.csv");
+			f=new File(lagerVerzeichnis+File.separator+"augen.csv");
 		}
 		if(bestandteil instanceof Kettenantrieb){
-			f=new File(lagerVerzeichnis+File.pathSeparator+"kettenantriebe.csv");
+			f=new File(lagerVerzeichnis+File.separator+"kettenantriebe.csv");
 		}
 		try{
+			//Inhalt auslesen und abspeichern
+			Scanner fileScanner = new Scanner(f);
 			FileWriter fileStream = new FileWriter(f);
 			BufferedWriter out = new BufferedWriter(fileStream);
+			while(fileScanner.hasNextLine()) { //einlesen vor dem hinzufuegen
+			    String next = fileScanner.nextLine();
+			    if(next.equals("\n")) out.newLine();
+			    else out.write(next);
+			    out.newLine(); 	
+			}
+			//Threadee am ende des files hinzufuegen
 			out.write(bestandteil.toString());
 			out.newLine();
-			out.close();
+			out.close(); //ressourcen freigeben
+			fileScanner.close();
+			fileStream.close();
 		}catch(Exception e){
 			return false;
 		}
@@ -154,7 +165,7 @@ public class LagerMitarbeiter{
 	public boolean einlagern(Threadee threadee) {
 		Logger logger=Logger.getLogger("Arbeitsverlauf");
 		File f=new File("");
-		f=new File(lagerVerzeichnis+File.pathSeparator+"threadees.csv");
+		f=new File(lagerVerzeichnis+File.separator+"threadees.csv");
 		try{
 			//Inhalt auslesen und abspeichern
 			Scanner fileScanner = new Scanner(f);
