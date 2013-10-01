@@ -156,11 +156,23 @@ public class LagerMitarbeiter{
 		File f=new File("");
 		f=new File(lagerVerzeichnis+File.pathSeparator+"threadees.csv");
 		try{
-			FileWriter filewr = new FileWriter(f);
-			BufferedWriter out = new BufferedWriter(filewr);
+			//Inhalt auslesen und abspeichern
+			Scanner fileScanner = new Scanner(f);
+			FileWriter fileStream = new FileWriter(f);
+			BufferedWriter out = new BufferedWriter(fileStream);
+			while(fileScanner.hasNextLine()) { //einlesen vor dem hinzufuegen
+			    String next = fileScanner.nextLine();
+			    if(next.equals("\n")) out.newLine();
+			    else out.write(next);
+			    out.newLine(); 
+			}
+			//Threadee am ende des files hinzufuegen
 			out.write(threadee.toString());
 			out.newLine();
-			out.close();
+			
+			out.close(); //ressourcen freigeben
+			fileScanner.close();
+			fileStream.close();
 		}catch(Exception e){
 			return false;
 		}
