@@ -2,6 +2,9 @@ package ayvazyanbelinic;
 
 import java.util.LinkedList;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 
 /**
  * 
@@ -33,6 +36,8 @@ public class Watchdog implements Runnable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		Logger lg=Logger.getLogger("Arbeitsverlauf");
+		lg.log(Level.INFO, "Der Betrieb wird wieder eingestellt.");
 		for(Stoppable toStop:this.toWatch){//Sende ein Stop an sämtliche Stoppables in toWatch
 			toStop.stop();
 		}
