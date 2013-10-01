@@ -133,7 +133,13 @@ public class Sekretariat {
 			}
 			erfolg=this.bauteilIDs.add(neueID);
 		}while(!erfolg);
-		return (Integer[]) neueID.toArray(); //Klont die Liste
+		Integer[] returnedArray=new Integer[neueID.size()];
+		int i=0;
+		for(Integer tmp:neueID){
+			returnedArray[i]=tmp;
+			i++;
+		}
+		return returnedArray; //Klont die Liste
 	}
 	/**
 	 * Wandelt eine LinkedList aus longs in einen ID string um
