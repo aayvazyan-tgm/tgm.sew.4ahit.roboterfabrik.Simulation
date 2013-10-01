@@ -35,7 +35,7 @@ public class TestThreadee {
 		arme[1] = new Arm(s4);
 		LinkedList<Long> id = new LinkedList<Long>();
 		id.add(1l);
-		assertNotNull(new Threadee(id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme));
+		assertNotNull(new Threadee(id,id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme));
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class TestThreadee {
 		arme[1] = new Arm(s4);
 		LinkedList<Long> id = new LinkedList<Long>();
 		id.add(1l);
-		Threadee t = new Threadee(id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme);
+		Threadee t = new Threadee(id,id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme);
 		assertEquals(id, t.getID());
 	}
 	
@@ -80,7 +80,7 @@ public class TestThreadee {
 		arme[1] = new Arm(s4);
 		LinkedList<Long> id = new LinkedList<Long>();
 		id.add(1l);
-		Threadee t = new Threadee(id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme);
+		Threadee t = new Threadee(id,id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme);
 		t.setMID(id);
 		assertEquals(id, t.getMID());
 	}
@@ -104,7 +104,7 @@ public class TestThreadee {
 		arme[1] = new Arm(s4);
 		LinkedList<Long> id = new LinkedList<Long>();
 		id.add(1l);
-		Threadee t = new Threadee(id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme);
+		Threadee t = new Threadee(id,id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme);
 		t.setMID(id);
 		assertEquals("Threadee:1;Monteur:1;Auge,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7;"
 				+ "Auge,0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100;Rumpf,0,1,2,5,6,7,10,11,198,18,19,20,31,33,52,57,61,98,99,100;"
