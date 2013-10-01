@@ -130,13 +130,13 @@ public class MyCommandLine {
 			if(!temp.exists())temp.mkdirs();
 			if(temp.exists() && temp.isDirectory()){
 				try{
-					File f=new File(lagerVerzeichnis+File.separator+"arme.csv");
+					File f=new File(pfad+File.separator+"arme.csv");
 					f.createNewFile();
-					f=new File(lagerVerzeichnis+File.separator+"rumpf.csv");
+					f=new File(pfad+File.separator+"rumpf.csv");
 					f.createNewFile();
-					f=new File(lagerVerzeichnis+File.separator+"augen.csv");
+					f=new File(pfad+File.separator+"augen.csv");
 					f.createNewFile();
-					f=new File(lagerVerzeichnis+File.separator+"kettenantriebe.csv");
+					f=new File(pfad+File.separator+"kettenantriebe.csv");
 					f.createNewFile();
 				}catch(Exception e){
 					e.printStackTrace();
@@ -155,7 +155,7 @@ public class MyCommandLine {
 			if(!temp.exists())temp.mkdirs();
 			if(temp.exists() && temp.isDirectory()){
 				try{
-					File f=new File(lagerVerzeichnis+File.separator+"log.txt");
+					File f=new File(pfad+File.separator+"log.txt");
 					f.createNewFile();
 				}catch(Exception e){
 					e.printStackTrace();
