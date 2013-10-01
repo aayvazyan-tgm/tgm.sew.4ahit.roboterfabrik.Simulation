@@ -78,8 +78,8 @@ public class Lieferant implements Stoppable {
 		
 		if(bestandteilname.equalsIgnoreCase("Arm")){
 			Arm bestandteil=new Arm(this.sekretariat.getBauTeilID()); //erstelle einen neuen Arm mit der vom Sektretariat vergebenen ID
-			logger.log(Level.INFO, "Neues Teil an einen Lagermitarbeiter geliefert:"+bestandteil.toString());
-			//lagerM.  //Liefere das erstellte teil aus.
+			logger.log(Level.INFO, "Neues Teil an einen Lagermitarbeiter geliefert: "+bestandteil.toString());
+			lagerM.einlagern(bestandteil);
 
 		}
 		if(bestandteilname.equalsIgnoreCase("Rumpf")){
