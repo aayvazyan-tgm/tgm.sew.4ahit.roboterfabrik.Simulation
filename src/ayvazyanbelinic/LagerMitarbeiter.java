@@ -120,7 +120,6 @@ public class LagerMitarbeiter{
 	 */
 	public synchronized boolean einlagern(Bestandteil bestandteil) {
 		Logger logger=Logger.getLogger("Arbeitsverlauf");
-		logger.log(Level.INFO, "Bestandteil eingelagert: "+bestandteil.toString());
 		File f=new File("");
 		if(bestandteil instanceof Arm){
 			f=new File(lagerVerzeichnis+File.pathSeparator+"arme.csv");
@@ -143,28 +142,29 @@ public class LagerMitarbeiter{
 		}catch(Exception e){
 			return false;
 		}
+		logger.log(Level.INFO, "Bestandteil eingelagert: "+bestandteil.toString());
 		return true;
 	}
 	
 	/**
-	 * 
-	 * @param roboter
-	 * @return
+	 *  Lagert einen Threadee in ein File ein
+	 * @param thradee der einzulagernde Threadee
+	 * @return gibt bei erfolgreichem schreiben true zurueck
 	 */
-	public boolean einlagern(Threadee roboter) {
+	public boolean einlagern(Threadee threadee) {
 		Logger logger=Logger.getLogger("Arbeitsverlauf");
-		logger.log(Level.INFO, "Threadee eingelagert: "+"ROBONAME");
 		File f=new File("");
-		f=new File(lagerVerzeichnis+File.pathSeparator+"kettenantriebe.csv");
+		f=new File(lagerVerzeichnis+File.pathSeparator+"threadees.csv");
 		try{
-			FileWriter fileStream = new FileWriter(f);
-			BufferedWriter out = new BufferedWriter(fileStream);
-			out.write("ROBONAME");
+			FileWriter filewr = new FileWriter(f);
+			BufferedWriter out = new BufferedWriter(filewr);
+			out.write(threadee.toString());
 			out.newLine();
 			out.close();
 		}catch(Exception e){
 			return false;
 		}
+		logger.log(Level.INFO, "Threadee eingelagert: "+threadee.toString());
 		return true;
 	}
 
