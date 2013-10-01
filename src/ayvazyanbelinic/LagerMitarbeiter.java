@@ -116,7 +116,7 @@ public class LagerMitarbeiter{
 	/**
 	 * 
 	 * @param bestandteil das einzulagernde Bestandteil
-	 * @return 
+	 * @return gibt zurueck ob die funktion erfolgreich ausgefuehrt wurde.
 	 */
 	public synchronized boolean einlagern(Bestandteil bestandteil) {
 		Logger logger=Logger.getLogger("Arbeitsverlauf");
