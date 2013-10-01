@@ -113,6 +113,10 @@ public class Sekretariat {
 		this.threadeeID.set(this.threadeeID.size()-1,this.threadeeID.getLast()+1);
 		return (LinkedList<Long>) threadeeID.clone(); //Klont die Liste
 	}
+	/**
+	 * generiert eine neue einzigartige ID
+	 * @return gibt eine neue BauteilID zurueck
+	 */
 	public synchronized Integer[] getBauTeilID() {
 		boolean erfolg=true;
 		Random r=new Random(/*this.seed*/);
@@ -128,5 +132,20 @@ public class Sekretariat {
 			erfolg=this.bauteilIDs.add(neueID);
 		}while(!erfolg);
 		return (Integer[]) neueID.toArray(); //Klont die Liste
+	}
+	/**
+	 * Wandelt eine LinkedList aus longs in einen ID string um
+	 * @param id die umzuwandelnde ID
+	 * @return ein String in bindestrich getrenntem Format. zb(9999999-414)
+	 */
+	public static String IDtoSting(LinkedList<Long> id) {
+		String erg="";
+		boolean first=true;
+		for(long l:id){
+			if(!first)erg+="-";
+			erg+=l;
+		}
+		return erg;
+		
 	}
 }
