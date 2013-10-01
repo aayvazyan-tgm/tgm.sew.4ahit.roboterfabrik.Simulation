@@ -56,19 +56,19 @@ public class LagerMitarbeiter{
 	 */
 	public synchronized Bestandteil getBestandteil(String bestandteilname) {
 		if(bestandteilname.equalsIgnoreCase("Arm")){
-			File f=new File(lagerVerzeichnis+File.pathSeparator+"arme.csv");
+			File f=new File(lagerVerzeichnis+File.separator+"arme.csv");
 			return getBestandTeilvonFile(f);
 		}
 		if(bestandteilname.equalsIgnoreCase("Rumpf")){
-			File f=new File(lagerVerzeichnis+File.pathSeparator+"rumpf.csv");
+			File f=new File(lagerVerzeichnis+File.separator+"rumpf.csv");
 			return getBestandTeilvonFile(f);
 		}
 		if(bestandteilname.equalsIgnoreCase("Auge")){
-			File f=new File(lagerVerzeichnis+File.pathSeparator+"augen.csv");
+			File f=new File(lagerVerzeichnis+File.separator+"augen.csv");
 			return getBestandTeilvonFile(f);
 		}
 		if(bestandteilname.equalsIgnoreCase("Kettenantrieb")){
-			File f=new File(lagerVerzeichnis+File.pathSeparator+"kettenantriebe.csv");
+			File f=new File(lagerVerzeichnis+File.separator+"kettenantriebe.csv");
 			return getBestandTeilvonFile(f);
 		}
 		return null; //gibt null zurueck falls der bestandteilname nicht gefunden wird
