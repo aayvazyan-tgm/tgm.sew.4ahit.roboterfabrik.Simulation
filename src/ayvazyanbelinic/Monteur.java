@@ -118,42 +118,42 @@ public class Monteur implements Stoppable {
 			Arm arm1 = null, arm2 = null;
 			
 			Bestandteil temp1 = lagermitarbeiter.getBestandteil("Auge");	//Es wrd ein Auge Bestandteil angefordert
-			if(!(temp1 != null && temp1 instanceof  Auge)) {				//Hier wird ueberprueftt ob das angeforderte Teil eine Instanz 
+			if(temp1 != null && temp1 instanceof  Auge) {				//Hier wird ueberprueftt ob das angeforderte Teil eine Instanz 
 				auge1 = (Auge) temp1;										//vom String st der uebergeben wurde.
 				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(" + auge1.toString() +") bekommen");
 			} else
 				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(Auge) nicht bekommen");
 													
 			Bestandteil temp2 = lagermitarbeiter.getBestandteil("Auge");
-			if(!(temp2 != null && temp2 instanceof  Auge)) {
+			if(temp2 != null && temp2 instanceof  Auge) {
 				auge2 = (Auge) temp2;
 				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(" + auge2.toString() + ") bekommen");
 			} else
 				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(Auge) nicht bekommen");
 
 			Bestandteil temp3 = lagermitarbeiter.getBestandteil("Rumpf");
-			if(!(temp3 != null && temp3 instanceof  Rumpf)) {
+			if(temp3 != null && temp3 instanceof  Rumpf) {
 				rumpf = (Rumpf) temp3;
 				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(" + rumpf.toString() + ") bekommen");
 			} else
 				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(Rumpf) nicht bekommen");
 			
 			Bestandteil temp4 = lagermitarbeiter.getBestandteil("Kettenantrieb");
-			if(!(temp4 != null && temp4 instanceof  Kettenantrieb)) {
+			if(temp4 != null && temp4 instanceof  Kettenantrieb) {
 				antrieb = (Kettenantrieb) temp4;
 				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(" + antrieb.toString() + ") bekommen");
 			} else
 				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(Kettenantrieb) nicht bekommen");
 			
 			Bestandteil temp5 = lagermitarbeiter.getBestandteil("Arm");
-			if(!(temp5 != null && temp5 instanceof  Arm)) {
+			if(temp5 != null && temp5 instanceof  Arm) {
 				arm1 = (Arm) temp5;
 				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(" + arm1.toString() + ") bekommen");
 			} else
 				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(Arm) nicht bekommen");
 				
 			Bestandteil temp6 = lagermitarbeiter.getBestandteil("Arm");
-			if(!(temp6 != null && temp6 instanceof  Arm)) {
+			if(temp6 != null && temp6 instanceof  Arm) {
 				arm2 = (Arm) temp6;
 				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(" + arm2.toString() + ") bekommen");
 			} else
