@@ -36,7 +36,9 @@ public class StartFabrik {
 					"Entweder sind nicht alle verpflichtenden Optionen und deren Argument angegeben,\n" +
 					"oder es ist ein allgmeiner Fehler aufgetreten.");
 		} catch(IllegalArgumentException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+		} catch(Exception e) {		//Damit keine Exceptions beim Benutzerlanden wird Exception allgmein abgefangen, was aber nie zutreffen sollte
+			System.out.println("Es ist ein Fehler aufgetreten");
 		}
 	}
 
