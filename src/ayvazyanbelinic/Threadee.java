@@ -64,11 +64,18 @@ public class Threadee {
 	
 	/**
 	 * Gibt die ID zurueck
+	 * @return Die ID des Threadees
 	 */
 	public LinkedList<Long> getID() {
 		return id;
 	}
 	
+	/**
+	 * Gibt die ID zurueck
+	 */
+	public LinkedList<Long> getMID() {
+		return mID;
+	}
 	
 	/**
 	 * Setzt die ID des Monteurs
