@@ -164,6 +164,12 @@ public class Monteur implements Stoppable {
 			if(roboter != null) {
 				do {
 					/* Der Monteur versucht solange den fertigen Roboter zu liefern bis es nicht funktioniert hat. */
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} //kurze pause vor dem naechstem versuch
 					liefern = lagermitarbeiter.einlagern(roboter);
 				} while(!liefern);
 				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat neuen Threadee:" + Sekretariat.idToString(roboter.getID()) + " geliefert");
