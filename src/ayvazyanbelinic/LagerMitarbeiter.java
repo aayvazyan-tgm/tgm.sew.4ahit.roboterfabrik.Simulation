@@ -191,6 +191,7 @@ public class LagerMitarbeiter{
 			out.close(); //ressourcen freigeben
 			fileStream.close();
 		}catch(Exception e){
+			logger.log(Level.INFO, "Konnte threadee nicht einlagern");
 			return false;
 		}
 		logger.log(Level.INFO, "Threadee eingelagert: "+threadee.toString());
