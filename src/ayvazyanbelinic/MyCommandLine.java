@@ -127,8 +127,24 @@ public class MyCommandLine {
 		if(cl.hasOption(oLagerVerzeichnis)) {
 			String pfad = (String) cl.getValue(oLagerVerzeichnis);
 			File temp = new File(pfad);
-			if(temp.exists() && temp.isDirectory())
+			if(!temp.exists())temp.mkdirs();
+			if(temp.exists() && temp.isDirectory()){
+				try{
+					File f=new File(lagerVerzeichnis+File.separator+"arme.csv");
+					f.createNewFile();
+					f=new File(lagerVerzeichnis+File.separator+"rumpf.csv");
+					f.createNewFile();
+					f=new File(lagerVerzeichnis+File.separator+"augen.csv");
+					f.createNewFile();
+					f=new File(lagerVerzeichnis+File.separator+"kettenantriebe.csv");
+					f.createNewFile();
+				}catch(Exception e){
+					e.printStackTrace();
+					throw new IllegalArgumentException("Ungueltiger Pfad fuers Lager!");
+				}
 				this.lagerVerzeichnis = pfad;
+				
+			}
 			else
 				throw new IllegalArgumentException("Ungueltiger Pfad fuers Lager!");
 		}
@@ -136,9 +152,17 @@ public class MyCommandLine {
 		if(cl.hasOption(oLogVerzeichnis)) {
 			String pfad = (String) cl.getValue(oLogVerzeichnis);
 			File temp = new File(pfad);
-			if(temp.exists() && temp.isDirectory())
+			if(!temp.exists())temp.mkdirs();
+			if(temp.exists() && temp.isDirectory()){
+				try{
+					File f=new File(lagerVerzeichnis+File.separator+"log.txt");
+					f.createNewFile();
+				}catch(Exception e){
+					e.printStackTrace();
+					throw new IllegalArgumentException("Ungueltiger Pfad fuer den Log-Ordner");
+				}
 				this.logVerzeichnis = pfad;
-			else
+			}else
 				throw new IllegalArgumentException("Ungueltiger Pfad fuer den Log-Ordner!");
 		}
 			
