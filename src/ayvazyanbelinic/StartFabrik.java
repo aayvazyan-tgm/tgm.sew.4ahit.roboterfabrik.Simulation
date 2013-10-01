@@ -23,7 +23,7 @@ public class StartFabrik {
 			MyCommandLine m=new MyCommandLine(args);//Verarbeitet die argumente
 			
 			FileAppender ap=new FileAppender(); //ein appender wird für die Log Datei erstellt
-			ap.setFile(m.getLogVerzeichnis()); //die Datei fuer den appender wird gesetzt
+			ap.setFile(m.getLogVerzeichnis()+File.separator+"log.txt"); //die Datei fuer den appender wird gesetzt
 			BasicConfigurator.configure(ap);  //der appender wird dem logger zugewiesen
 			Logger lg=Logger.getLogger("Arbeitsverlauf"); //Im Arbeitsverlauf finden sich saemtliche aktivitaeten innerhalb der Fabrik
 			
@@ -36,7 +36,7 @@ public class StartFabrik {
 					"Entweder sind nicht alle verpflichtenden Optionen und deren Argument angegeben,\n" +
 					"oder es ist ein allgmeiner Fehler aufgetreten.");
 		} catch(IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
