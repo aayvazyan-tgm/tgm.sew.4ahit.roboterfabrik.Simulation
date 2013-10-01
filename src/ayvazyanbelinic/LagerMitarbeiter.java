@@ -155,6 +155,7 @@ public class LagerMitarbeiter{
 			out.close(); //ressourcen freigeben
 			fileStream.close();
 		}catch(Exception e){
+			logger.log(Level.INFO, "Konnte ein bestandteil nicht einlagern");
 			return false;
 		}
 		logger.log(Level.INFO, "Bestandteil eingelagert: "+bestandteil.toString());
@@ -166,7 +167,7 @@ public class LagerMitarbeiter{
 	 * @param thradee der einzulagernde Threadee
 	 * @return gibt bei erfolgreichem schreiben true zurueck
 	 */
-	public boolean einlagern(Threadee threadee) {
+	public synchronized boolean einlagern(Threadee threadee) {
 		Logger logger=Logger.getLogger("Arbeitsverlauf");
 		File f=new File("");
 		f=new File(lagerVerzeichnis+File.separator+"threadees.csv");
@@ -191,7 +192,7 @@ public class LagerMitarbeiter{
 			out.close(); //ressourcen freigeben
 			fileStream.close();
 		}catch(Exception e){
-			logger.log(Level.INFO, "Konnte threadee nicht einlagern");
+			logger.log(Level.INFO, "Konnte ein threadee nicht einlagern");
 			return false;
 		}
 		logger.log(Level.INFO, "Threadee eingelagert: "+threadee.toString());
