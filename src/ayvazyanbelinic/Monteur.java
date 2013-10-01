@@ -145,7 +145,7 @@ public class Monteur implements Stoppable {
 			if(alleVorhanden) {
 				Threadee roboter = zusammenbauen(auge1,auge2,rumpf,antrieb,arm1,arm2);
 				if(roboter != null)
-					lagermitarbeiter.liefern(roboter, this);
+					lagermitarbeiter.einlagern(roboter);
 				
 				//Noch nicht fertig
 			}
