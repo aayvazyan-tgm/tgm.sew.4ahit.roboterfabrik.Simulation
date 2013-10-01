@@ -135,20 +135,24 @@ public class LagerMitarbeiter{
 		}
 		try{
 			//Inhalt auslesen und abspeichern
+			//Inhalt auslesen und abspeichern
 			Scanner fileScanner = new Scanner(f);
-			FileWriter fileStream = new FileWriter(f);
-			BufferedWriter out = new BufferedWriter(fileStream);
+			LinkedList<String> fileData=new LinkedList<String>();
 			while(fileScanner.hasNextLine()) { //einlesen vor dem hinzufuegen
 			    String next = fileScanner.nextLine();
-			    if(next.equals("\n")) out.newLine();
-			    else out.write(next);
-			    out.newLine(); 	
+			    fileData.add(next);
 			}
+			fileScanner.close();
+			FileWriter fileStream = new FileWriter(f);
+			BufferedWriter out = new BufferedWriter(fileStream);
 			//Threadee am ende des files hinzufuegen
 			out.write(bestandteil.toString());
 			out.newLine();
+			for(String output:fileData){
+				out.write(output);
+				out.newLine();
+			}
 			out.close(); //ressourcen freigeben
-			fileScanner.close();
 			fileStream.close();
 		}catch(Exception e){
 			return false;
@@ -169,20 +173,22 @@ public class LagerMitarbeiter{
 		try{
 			//Inhalt auslesen und abspeichern
 			Scanner fileScanner = new Scanner(f);
-			FileWriter fileStream = new FileWriter(f);
-			BufferedWriter out = new BufferedWriter(fileStream);
+			LinkedList<String> fileData=new LinkedList<String>();
 			while(fileScanner.hasNextLine()) { //einlesen vor dem hinzufuegen
 			    String next = fileScanner.nextLine();
-			    if(next.equals("\n")) out.newLine();
-			    else out.write(next);
-			    out.newLine(); 
+			    fileData.add(next);
 			}
+			fileScanner.close();
+			FileWriter fileStream = new FileWriter(f);
+			BufferedWriter out = new BufferedWriter(fileStream);
 			//Threadee am ende des files hinzufuegen
 			out.write(threadee.toString());
 			out.newLine();
-			
+			for(String output:fileData){
+				out.write(output);
+				out.newLine();
+			}
 			out.close(); //ressourcen freigeben
-			fileScanner.close();
 			fileStream.close();
 		}catch(Exception e){
 			return false;
