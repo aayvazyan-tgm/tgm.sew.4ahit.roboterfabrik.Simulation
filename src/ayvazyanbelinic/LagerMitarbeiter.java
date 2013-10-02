@@ -145,7 +145,7 @@ public class LagerMitarbeiter{
 			fileScanner.close();
 			FileWriter fileStream = new FileWriter(f);
 			BufferedWriter out = new BufferedWriter(fileStream);
-			//Threadee am ende des files hinzufuegen
+			//Bestandteil am begin des files hinzufuegen
 			out.write(bestandteil.toString());
 			out.newLine();
 			for(String output:fileData){
@@ -182,7 +182,7 @@ public class LagerMitarbeiter{
 			fileScanner.close();
 			FileWriter fileStream = new FileWriter(f);
 			BufferedWriter out = new BufferedWriter(fileStream);
-			//Threadee am ende des files hinzufuegen
+			//Threadee am begin des files hinzufuegen
 			out.write(threadee.toString());
 			out.newLine();
 			for(String output:fileData){
