@@ -29,7 +29,6 @@ public class StartFabrik {
 				ap = new FileAppender(new SimpleLayout(), m.getLogVerzeichnis()+File.separator+"log.txt", false); //erstellt einene neuen appender fuer log4J
 				BasicConfigurator.configure(ap);  //der appender wird dem logger zugewiesen
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} 
 			
