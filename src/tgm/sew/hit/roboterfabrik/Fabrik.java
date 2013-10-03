@@ -21,8 +21,10 @@ public class Fabrik {
 	
 	/**
 	 * Threadpool fuer die Lagermitarbeiter
-	 */
+	 *
 	private ThreadPoolExecutor lagerMitarbeiterPool;
+	*/
+	
 	/**
 	 *  Der Lagermitarbeiter
 	 */
@@ -105,7 +107,9 @@ public class Fabrik {
 			toWatch.add(m); // Hinzufuegen zu der liste fuer den Watchdog
 		}
 		
-		
-		new Thread(new Watchdog(laufzeit, toWatch)).start(); //Startet den Watchdog in eimen neuem Thread.
+		LinkedList<ThreadPoolExecutor> threadPoolExecutors=new LinkedList<ThreadPoolExecutor>();
+		threadPoolExecutors.add(lieferantenPool);//Speichert die threadpoolexecutors in eine liste um sie in den watchdog zu uebergeben
+		threadPoolExecutors.add(monteurPool);
+		new Thread(new Watchdog(laufzeit, toWatch, threadPoolExecutors)).start(); //Startet den Watchdog in eimen neuem Thread.
 	}
 }
