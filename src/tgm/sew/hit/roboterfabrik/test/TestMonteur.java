@@ -8,55 +8,257 @@ import static org.junit.Assert.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
-
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.FileAppender;
-import org.apache.log4j.Logger;
-import org.apache.log4j.SimpleLayout;
 import org.junit.Test;
-
-import tgm.sew.hit.roboterfabrik.LagerMitarbeiter;
-import tgm.sew.hit.roboterfabrik.Monteur;
-import tgm.sew.hit.roboterfabrik.Sekretariat;
+import tgm.sew.hit.roboterfabrik.*;
 
 /**
- * @author User
- *
+ * Die Monteur Klasse dirket wird nicht getestet, sondern ihr Inhalt(mit fix vergebenen Werten)
+ * @author Vennesa Belinic
+ * @version 2013-10-03
  */
 public class TestMonteur {
 	
-	
+	private Threadee temp;
 
 	/**
-	 * 
+	 * Testet den Konstruktor
 	 */
 	@Test
 	public void testMonteur() {
-		fail("Not yet implemented");
+		assertNotNull(new Monteur(null, null, null));
 	}
-
+	
 	/**
-	 * 
+	 * Code der in der zusammenfassen-Methode enthalten ist wird hier mit fixen Werten getestet
 	 */
 	@Test
-	public void testZusammenbauen() {
-		fail("Not yet implemented");
+	public void testZusammenbauen_1() {
+		Integer[] s1 = {6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7};
+		Integer[] s2 = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
+		Integer[] s3 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+		Integer[] s4 = {1,2,0,3,4,56,7,8,9,10,11,12,23,14,52,16,71,18,19,29};
+		Integer[] s5 = {0,1,2,5,6,7,10,11,198,18,19,20,31,33,52,57,61,98,99,100};
+		Integer[] s6 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,972,17,18,19,20};
+		Auge auge1 = new Auge(s1);
+		Auge auge2 = new Auge(s2);
+		Rumpf rumpf = new Rumpf(s3);
+		Kettenantrieb antrieb = new Kettenantrieb(s4);
+		Arm arm1 = new Arm(s5);
+		Arm arm2 = new Arm(s6);
+		if(auge1 != null && auge2 != null && rumpf != null && antrieb != null && arm1 != null && arm2 != null) {
+			auge1.sortieren();																							
+			auge2.sortieren();																							
+			rumpf.sortieren();
+			antrieb.sortieren();
+			arm1.sortieren();
+			arm2.sortieren();
+			
+			Auge[] augen = {auge1, auge2};
+			Arm[] arme = {arm1, arm2};
+			
+			temp = new Threadee(null,null, augen, rumpf, antrieb, arme);
+		} else {
+			temp = null;
+		}
+		assertNotNull(temp);
+	}
+	
+	/**
+	 * Code der in der zusammenfassen-Methode enthalten ist wird hier mit fixen Werten getestet
+	 */
+	@Test
+	public void testZusammenbauen_2() {
+		Integer[] s1 = {6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7};
+		Integer[] s2 = {0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100};
+		Integer[] s3 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+		Integer[] s4 = {1,2,0,3,4,56,7,8,9,10,11,12,23,14,52,16,71,18,19,29};
+		Integer[] s5 = {0,1,2,5,6,7,10,11,198,18,19,20,31,33,52,57,61,98,99,100};
+		Integer[] s6 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,972,17,18,19,20};
+		Auge auge1 = null;
+		Auge auge2 = new Auge(s2);
+		Rumpf rumpf = new Rumpf(s3);
+		Kettenantrieb antrieb = new Kettenantrieb(s4);
+		Arm arm1 = new Arm(s5);
+		Arm arm2 = new Arm(s6);
+		if(auge1 != null && auge2 != null && rumpf != null && antrieb != null && arm1 != null && arm2 != null) {		//wenn keines der Teile null ist
+			auge1.sortieren();																							//wird der Roboter zusammengebaut
+			auge2.sortieren();																							//(sortieren der Seriennummer)
+			rumpf.sortieren();
+			antrieb.sortieren();
+			arm1.sortieren();
+			arm2.sortieren();
+			
+			Auge[] augen = {auge1, auge2};
+			Arm[] arme = {arm1, arm2};
+			
+			temp = new Threadee(null,null, augen, rumpf, antrieb, arme);
+		} else {
+			temp = null;
+		}
+		assertNull(temp);
 	}
 
 	/**
-	 * 
+	 * Testet die stop-Methode
 	 */
 	@Test
 	public void testStop() {
-		fail("Not yet implemented");
+		Monteur m = new Monteur(null,null,null);
+		m.stop();
+		assertTrue(m.getStop());
+	}
+	
+	/**
+	 * Wird zum testen der run-Methode benötigt
+	 */
+	public void testZusammenbauen(Auge auge1, Auge auge2, Rumpf rumpf, Kettenantrieb antrieb, Arm arm1, Arm arm2) {
+		if(auge1 != null && auge2 != null && rumpf != null && antrieb != null && arm1 != null && arm2 != null) {
+			auge1.sortieren();																							
+			auge2.sortieren();																							
+			rumpf.sortieren();
+			antrieb.sortieren();
+			arm1.sortieren();
+			arm2.sortieren();
+			
+			Auge[] augen = {auge1, auge2};
+			Arm[] arme = {arm1, arm2};
+			
+			temp = new Threadee(null,null, augen, rumpf, antrieb, arme);
+		} else {
+			temp = null;
+		}
 	}
 
 	/**
-	 * 
+	 * Code der in der run-Methode enthalten ist wird hier mit fixen Werten getestet
 	 */
 	@Test
-	public void testRun() {
-		fail("Not yet implemented");
+	public void testRun_1() {
+		boolean liefern, zurueckliefern;
+		Auge auge1 = null, auge2 = null;
+		Rumpf rumpf = null;
+		Kettenantrieb antrieb = null;
+		Arm arm1 = null, arm2 = null;
+		Bestandteil temp1 = new Auge(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp1 != null && temp1 instanceof  Auge) {
+			auge1 = (Auge) temp1;
+		} else {}
+			//loggen									
+		Bestandteil temp2 = new Auge(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp2 != null && temp2 instanceof  Auge) {
+			auge2 = (Auge) temp2;
+		} else {}
+			//loggen
+		Bestandteil temp3 = new Rumpf(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp3 != null && temp3 instanceof  Rumpf) {
+			rumpf = (Rumpf) temp3;
+		} else {}
+			//loggen
+		Bestandteil temp4 = new Kettenantrieb(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp4 != null && temp4 instanceof  Kettenantrieb) {
+			antrieb = (Kettenantrieb) temp4;
+		} else {}
+			//loggen
+		Bestandteil temp5 = new Arm(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp5 != null && temp5 instanceof  Arm) {
+			arm1 = (Arm) temp5;
+		} else {}
+			//loggen	
+		Bestandteil temp6 = new Arm(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp6 != null && temp6 instanceof  Arm) {
+			arm2 = (Arm) temp6;
+		} else {}
+			//loggen
+		testZusammenbauen(auge1, auge2, rumpf, antrieb, arm1, arm2);
+		assertNotNull(temp);
+	}
+	
+	/**
+	 * Code der in der run-Methode enthalten ist wird hier mit fixen Werten getestet
+	 */
+	@Test
+	public void testRun_2() {
+		boolean liefern, zurueckliefern;
+		Auge auge1 = null, auge2 = null;
+		Rumpf rumpf = null;
+		Kettenantrieb antrieb = null;
+		Arm arm1 = null, arm2 = null;
+		Bestandteil temp1 = new Auge(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp1 != null && temp1 instanceof  Auge) {
+			auge1 = (Auge) temp1;
+		} else {}
+			//loggen									
+		Bestandteil temp2 = new Auge(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp2 != null && temp2 instanceof  Auge) {
+			auge2 = (Auge) temp2;
+		} else {}
+			//loggen
+		Bestandteil temp3 = new Rumpf(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp3 != null && temp3 instanceof  Rumpf) {
+			rumpf = (Rumpf) temp3;
+		} else {}
+			//loggen
+		Bestandteil temp4 = new Arm(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp4 != null && temp4 instanceof  Kettenantrieb) {
+			antrieb = (Kettenantrieb) temp4;
+		} else {}
+			//loggen
+		Bestandteil temp5 = new Arm(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp5 != null && temp5 instanceof  Arm) {
+			arm1 = (Arm) temp5;
+		} else {}
+			//loggen	
+		Bestandteil temp6 = new Arm(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp6 != null && temp6 instanceof  Arm) {
+			arm2 = (Arm) temp6;
+		} else {}
+			//loggen
+		testZusammenbauen(auge1, auge2, rumpf, antrieb, arm1, arm2);;
+		assertNull(temp);
+	}
+	
+	/**
+	 * Code der in der run-Methode enthalten ist wird hier mit fixen Werten getestet
+	 */
+	@Test
+	public void testRun_3() {
+		boolean liefern, zurueckliefern;
+		Auge auge1 = null, auge2 = null;
+		Rumpf rumpf = null;
+		Kettenantrieb antrieb = null;
+		Arm arm1 = null, arm2 = null;
+		Bestandteil temp1 = new Auge(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp1 != null && temp1 instanceof  Auge) {
+			auge1 = (Auge) temp1;
+		} else {}
+			//loggen									
+		Bestandteil temp2 = null;
+		if(temp2 != null && temp2 instanceof  Auge) {
+			auge2 = (Auge) temp2;
+		} else {}
+			//loggen
+		Bestandteil temp3 = new Rumpf(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp3 != null && temp3 instanceof  Rumpf) {
+			rumpf = (Rumpf) temp3;
+		} else {}
+			//loggen
+		Bestandteil temp4 = new Kettenantrieb(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp4 != null && temp4 instanceof  Kettenantrieb) {
+			antrieb = (Kettenantrieb) temp4;
+		} else {}
+			//loggen
+		Bestandteil temp5 = new Arm(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp5 != null && temp5 instanceof  Arm) {
+			arm1 = (Arm) temp5;
+		} else {}
+			//loggen	
+		Bestandteil temp6 = new Arm(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp6 != null && temp6 instanceof  Arm) {
+			arm2 = (Arm) temp6;
+		} else {}
+			//loggen
+		testZusammenbauen(auge1, auge2, rumpf, antrieb, arm1, arm2);
+		assertNull(temp);
 	}
 
 }

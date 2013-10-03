@@ -206,47 +206,12 @@ public class Monteur implements Stoppable {
 	}
 	
 	/**
-	 * Wird zum testen benoetigt.
-	 * Inhalt der run-Methode ohne das Loggen.
+	 * Gibt die stop Variable zurueck.
+	 * Wird zum testen benötigt.
+	 * @return stop-Attribut als boolean
 	 */
-	public void runToTest() {
-		boolean liefern, zurueckliefern;
-		
-		Auge auge1 = null, auge2 = null;
-		Rumpf rumpf = null;
-		Kettenantrieb antrieb = null;
-		Arm arm1 = null, arm2 = null;
-		
-		Bestandteil temp1 = lagermitarbeiter.getBestandteil("Auge");	
-		if(temp1 != null && temp1 instanceof Auge) auge1 = (Auge) temp1;
-												
-		Bestandteil temp2 = lagermitarbeiter.getBestandteil("Auge");
-		if(temp2 != null && temp2 instanceof Auge) auge2 = (Auge) temp2;
-	
-		Bestandteil temp3 = lagermitarbeiter.getBestandteil("Rumpf");
-		if(temp3 != null && temp3 instanceof Rumpf) rumpf = (Rumpf) temp3;
-		
-		Bestandteil temp4 = lagermitarbeiter.getBestandteil("Kettenantrieb");
-		if(temp4 != null && temp4 instanceof Kettenantrieb) antrieb = (Kettenantrieb) temp4;
-			
-		Bestandteil temp5 = lagermitarbeiter.getBestandteil("Arm");
-		if(temp5 != null && temp5 instanceof Arm) arm1 = (Arm) temp5;
-				
-		Bestandteil temp6 = lagermitarbeiter.getBestandteil("Arm");
-		if(temp6 != null && temp6 instanceof Arm) arm2 = (Arm) temp6;
-		
-		Threadee roboter = zusammenbauen(auge1,auge2,rumpf,antrieb,arm1,arm2);
-		if(roboter != null) {
-			do { liefern = lagermitarbeiter.einlagern(roboter); } while(!liefern);
-		} else {
-			/* Der Monteur versucht die Teile solange zurueckzugeben bis das einlagern nicht funktioniert hat. */
-			if(temp1 != null) { do { zurueckliefern = lagermitarbeiter.einlagern(temp1); } while(!zurueckliefern); }
-			if(temp2 != null) { do { zurueckliefern = lagermitarbeiter.einlagern(temp2); } while(!zurueckliefern); }
-			if(temp3 != null) { do { zurueckliefern = lagermitarbeiter.einlagern(temp3); } while(!zurueckliefern); }
-			if(temp4 != null) { do { zurueckliefern = lagermitarbeiter.einlagern(temp4); } while(!zurueckliefern); }
-			if(temp5 != null) { do { zurueckliefern = lagermitarbeiter.einlagern(temp5); } while(!zurueckliefern); }
-			if(temp6 != null) { do { zurueckliefern = lagermitarbeiter.einlagern(temp6); } while(!zurueckliefern); }
-		}
+	public boolean getStop() {
+		return stop;
 	}
 		
 }
