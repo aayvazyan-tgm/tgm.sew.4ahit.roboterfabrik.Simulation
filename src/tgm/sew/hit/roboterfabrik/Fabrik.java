@@ -3,8 +3,6 @@
  */
 package tgm.sew.hit.roboterfabrik;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;

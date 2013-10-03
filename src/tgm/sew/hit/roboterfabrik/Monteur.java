@@ -1,10 +1,6 @@
 package tgm.sew.hit.roboterfabrik;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Random;
-
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 

@@ -1,7 +1,6 @@
 package tgm.sew.hit.roboterfabrik;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import org.apache.commons.cli2.OptionException;

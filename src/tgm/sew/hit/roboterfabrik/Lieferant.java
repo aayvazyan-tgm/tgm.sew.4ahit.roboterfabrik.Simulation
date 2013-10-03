@@ -1,7 +1,5 @@
 package tgm.sew.hit.roboterfabrik;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -42,7 +40,7 @@ public class Lieferant implements Stoppable {
 	/**
 	 * das Lagerverzeichnis
 	 */
-	private String lagerVerz;
+	//private String lagerVerz;
 
 	/**
 	 * das sekretariat fuer die ID vergabe
@@ -61,7 +59,7 @@ public class Lieferant implements Stoppable {
 		this.id=id;
 		this.seed=new Random().nextLong();//kann angepasst werden
 		this.lagerM=lagerM;
-		this.lagerVerz=lagerVerzeichnis;
+		//this.lagerVerz=lagerVerzeichnis;
 		this.sekretariat=sekretariat;
 	}
 	

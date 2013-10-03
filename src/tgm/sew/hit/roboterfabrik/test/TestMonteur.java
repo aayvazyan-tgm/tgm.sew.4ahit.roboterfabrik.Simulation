@@ -5,9 +5,6 @@ package tgm.sew.hit.roboterfabrik.test;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
 import org.junit.Test;
 import tgm.sew.hit.roboterfabrik.*;
 
