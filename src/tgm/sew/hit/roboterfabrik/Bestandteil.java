@@ -1,5 +1,8 @@
 package tgm.sew.hit.roboterfabrik;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 
 /**
  * Stellt ein Bestandteil des Roboters da.
@@ -94,7 +97,8 @@ public abstract class Bestandteil {
 				snr[i-1] = Integer.parseInt(teil[i]);
 			} catch(NumberFormatException e) {		//Wenn die Strings keine Zahlen sind wird eine Fehlermeldung zurückgegeben
 				name = "";							//und der Name auf "" gesetzt damit null returned wird.
-				System.out.println("Es ist ein Fehler beim Auslesen der Bestanteile entstanden");
+				Logger lg= Logger.getLogger("Arbeitsverlauf");
+				lg.log(Level.DEBUG, "Ein string konnte nicht in ein bestandteil umgewandelt werden: "+bestandTeilString);
 				return null;
 			}
 		}
