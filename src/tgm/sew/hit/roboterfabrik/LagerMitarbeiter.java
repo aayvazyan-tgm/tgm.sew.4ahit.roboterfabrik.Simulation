@@ -27,7 +27,7 @@ public class LagerMitarbeiter{
 	/** Das lager Verzeichnis. */
 	private String lagerVerzeichnis;
 	
-	
+	private Object sync=new Object();
 	
 	/**
 	 * Erstellt einen neuen LagerMitarbeiter
@@ -50,6 +50,7 @@ public class LagerMitarbeiter{
 	 * @return das angeforderte Bestandteil, kann mit instanceof zugeordnet werden. Gibt null zurueck wenn das angeforderte Teil nicht vorhanden ist, oder ein fehler aufgetreten ist.
 	 */
 	public synchronized Bestandteil getBestandteil(String bestandteilname) {
+		
 		if(bestandteilname.equalsIgnoreCase("Arm")){
 			File f=new File(lagerVerzeichnis+File.separator+"arme.csv");
 			return getBestandTeilvonFile(f);
@@ -83,32 +84,36 @@ public class LagerMitarbeiter{
 	 * @return gibt den Bestandteil aus dem pfad zurueck
 	 */
 	private synchronized Bestandteil getBestandTeilvonFile(File f) {
-		try{
-			Scanner fileScanner = new Scanner(f);
-			if(!fileScanner.hasNext()){ //Sollte kein bestandteil vorhanden sein wird null zurueckgegeben
-				fileScanner.close(); //filescanner vor dem return wieder freigeben
-				return null;
-			}
-			String eingelesen=fileScanner.nextLine(); //Die gelesene Zeile
-			FileWriter fileStream = new FileWriter(f);
-			BufferedWriter out = new BufferedWriter(fileStream);
-			while(fileScanner.hasNextLine()) { //schreibe die Datei ohne den bestandteil neu
-			    String next = fileScanner.nextLine();
-			    if(next.equals("\n")) out.newLine(); //eig. nicht noetig, trotzdem zur fehlertolleranz eingebunden
-			    else out.write(next);
-			    out.newLine();   
-			}
-			out.close(); //ressourcen freigeben
-			fileScanner.close();
-			fileStream.close();
-			
-			return Bestandteil.getBestandTeil(eingelesen); //wandelt den String aus dem file in ein Bestandteil objekt um.
-        } catch (FileNotFoundException e){
-            System.out.println("Error: "+e);
-        } catch (Exception e)
-        {
-            System.out.println("Error: "+e);
-        }
+		synchronized(sync){
+			try{
+				Scanner fileScanner = new Scanner(f);
+				if(!fileScanner.hasNext()){ //Sollte kein bestandteil vorhanden sein wird null zurueckgegeben
+					fileScanner.close(); //filescanner vor dem return wieder freigeben
+					return null;
+				}
+				String eingelesen=fileScanner.nextLine(); //Die gelesene Zeile
+				FileWriter fileStream = new FileWriter(f);
+				BufferedWriter out = new BufferedWriter(fileStream);
+				while(fileScanner.hasNextLine()) { //schreibe die Datei ohne den bestandteil neu
+				    String next = fileScanner.nextLine();
+				    if(next.equals("\n")) out.newLine(); //eig. nicht noetig, trotzdem zur fehlertolleranz eingebunden
+				    else out.write(next);
+				    out.newLine();   
+				}
+				out.close(); //ressourcen freigeben
+				fileScanner.close();
+				fileStream.close();
+				
+				return Bestandteil.getBestandTeil(eingelesen); //wandelt den String aus dem file in ein Bestandteil objekt um.
+	        } catch (FileNotFoundException e){
+	        	Logger logger=Logger.getLogger("Arbeitsverlauf");
+	            logger.log(Level.DEBUG, "Der lagermitarbeiter konnte eine Datei nicht finden: "+e.getMessage());
+	        } catch (Exception e)
+	        {
+	        	Logger logger=Logger.getLogger("Arbeitsverlauf");
+	            logger.log(Level.DEBUG, "Der lagermitarbeiter konnte nicht auf eine Datei zugreifen: "+e.getMessage());
+	        }
+		}
 		return null; //bei auftreten eines fehlers wird null zurueckgegeben
 	}
 
@@ -122,53 +127,55 @@ public class LagerMitarbeiter{
 	 * @return gibt zurueck ob die funktion erfolgreich ausgefuehrt wurde.
 	 */
 	public synchronized boolean einlagern(Bestandteil bestandteil) {
-		Logger logger=Logger.getLogger("Arbeitsverlauf");
-		File f=new File("");
-		if(bestandteil instanceof Arm){
-			f=new File(lagerVerzeichnis+File.separator+"arme.csv");
-		}
-		if(bestandteil instanceof Rumpf){
-			f=new File(lagerVerzeichnis+File.separator+"rumpf.csv");
-		}
-		if(bestandteil instanceof Auge){
-			f=new File(lagerVerzeichnis+File.separator+"augen.csv");
-		}
-		if(bestandteil instanceof Kettenantrieb){
-			f=new File(lagerVerzeichnis+File.separator+"kettenantriebe.csv");
-		}
-		if(bestandteil instanceof Antenne){
-			f=new File(lagerVerzeichnis+File.separator+"antenne.csv");
-		}
-		if(bestandteil instanceof Greifer){
-			f=new File(lagerVerzeichnis+File.separator+"greifer.csv");
-		}
-		try{
-			//Inhalt auslesen und abspeichern
-			//Inhalt auslesen und abspeichern
-			Scanner fileScanner = new Scanner(f);
-			LinkedList<String> fileData=new LinkedList<String>();
-			while(fileScanner.hasNextLine()) { //einlesen vor dem hinzufuegen
-			    String next = fileScanner.nextLine();
-			    fileData.add(next);
+		synchronized(sync){
+			Logger logger=Logger.getLogger("Arbeitsverlauf");
+			File f=new File("");
+			if(bestandteil instanceof Arm){
+				f=new File(lagerVerzeichnis+File.separator+"arme.csv");
 			}
-			fileScanner.close();
-			FileWriter fileStream = new FileWriter(f);
-			BufferedWriter out = new BufferedWriter(fileStream);
-			//Bestandteil am begin des files hinzufuegen
-			out.write(bestandteil.toString());
-			out.newLine();
-			for(String output:fileData){
-				out.write(output);
+			if(bestandteil instanceof Rumpf){
+				f=new File(lagerVerzeichnis+File.separator+"rumpf.csv");
+			}
+			if(bestandteil instanceof Auge){
+				f=new File(lagerVerzeichnis+File.separator+"augen.csv");
+			}
+			if(bestandteil instanceof Kettenantrieb){
+				f=new File(lagerVerzeichnis+File.separator+"kettenantriebe.csv");
+			}
+			if(bestandteil instanceof Antenne){
+				f=new File(lagerVerzeichnis+File.separator+"antenne.csv");
+			}
+			if(bestandteil instanceof Greifer){
+				f=new File(lagerVerzeichnis+File.separator+"greifer.csv");
+			}
+			try{
+				//Inhalt auslesen und abspeichern
+				//Inhalt auslesen und abspeichern
+				Scanner fileScanner = new Scanner(f);
+				LinkedList<String> fileData=new LinkedList<String>();
+				while(fileScanner.hasNextLine()) { //einlesen vor dem hinzufuegen
+				    String next = fileScanner.nextLine();
+				    fileData.add(next);
+				}
+				fileScanner.close();
+				FileWriter fileStream = new FileWriter(f);
+				BufferedWriter out = new BufferedWriter(fileStream);
+				//Bestandteil am begin des files hinzufuegen
+				out.write(bestandteil.toString());
 				out.newLine();
+				for(String output:fileData){
+					out.write(output);
+					out.newLine();
+				}
+				out.close(); //ressourcen freigeben
+				fileStream.close();
+			}catch(Exception e){
+				logger.log(Level.DEBUG, "Konnte ein bestandteil nicht einlagern");
+				return false;
 			}
-			out.close(); //ressourcen freigeben
-			fileStream.close();
-		}catch(Exception e){
-			logger.log(Level.INFO, "Konnte ein bestandteil nicht einlagern");
-			return false;
+			logger.log(Level.INFO, "Bestandteil eingelagert: "+bestandteil.toString());
 		}
-		logger.log(Level.INFO, "Bestandteil eingelagert: "+bestandteil.toString());
-		return true;
+	return true;
 	}
 	
 	/**
@@ -201,7 +208,7 @@ public class LagerMitarbeiter{
 			out.close(); //ressourcen freigeben
 			fileStream.close();
 		}catch(Exception e){
-			logger.log(Level.INFO, "Konnte ein threadee nicht einlagern");
+			logger.log(Level.DEBUG, "Konnte ein threadee nicht einlagern");
 			return false;
 		}
 		logger.log(Level.INFO, "Threadee eingelagert: "+threadee.toString());
