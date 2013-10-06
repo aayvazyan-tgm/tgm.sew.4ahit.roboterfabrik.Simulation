@@ -82,7 +82,7 @@ public class LagerMitarbeiter{
 	 * @param f - ist der pfad aus dem der Bestandteil hergeleitet werden soll
 	 * @return gibt den Bestandteil aus dem pfad zurueck
 	 */
-	private static Bestandteil getBestandTeilvonFile(File f) {
+	private synchronized Bestandteil getBestandTeilvonFile(File f) {
 		try{
 			Scanner fileScanner = new Scanner(f);
 			if(!fileScanner.hasNext()){ //Sollte kein bestandteil vorhanden sein wird null zurueckgegeben
