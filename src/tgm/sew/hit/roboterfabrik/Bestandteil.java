@@ -90,7 +90,7 @@ public abstract class Bestandteil {
 	public static Bestandteil getBestandTeil(String bestandTeilString) {
 		String [] teil = bestandTeilString.split(",");
 		String name = teil[0];
-		Integer[] snr = new Integer[20];
+		Integer[] snr = new Integer[teil.length-1];
 		
 		for(int i = 1; i < teil.length; i++) {		//Die Zahlen werden in die Seriennummer gespeichert.
 			try {
@@ -102,7 +102,9 @@ public abstract class Bestandteil {
 				return null;
 			}
 		}
-		
+		for(int i=0;i<snr.length;i++){
+			if(snr[i]==null)return null;//sollte eine stelle der seriennummer null sein : fehlgeschlagen
+		}
 		Bestandteil temp = null;		//Wird mit null initialisiert damit wenn Fehler auftreten
 										//null zurückgegeben wird.
 		if(name.equals("Auge"))
