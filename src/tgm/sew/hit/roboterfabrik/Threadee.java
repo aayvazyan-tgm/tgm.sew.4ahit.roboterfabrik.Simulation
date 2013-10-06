@@ -34,6 +34,16 @@ public class Threadee {
 	 * Die Arme des Roboters als Arm-Array da es 2 sind.
 	 */
 	private Arm[] arme;
+	
+	/**
+	 * Die Antenne des Roboters.
+	 */
+	private Antenne antenne;
+	
+	/**
+	 * Die Arme des Roboters als Arm-Array da es 2 sind.
+	 */
+	private Greifer[] greifer;
 
 	/**
 	 * Die ID des Threadees.
@@ -54,13 +64,15 @@ public class Threadee {
 	 * @param id Die ID des Threadees
 	 * @param bestandteile Die Bestandteile, als Bestanteil-Array
 	 */
-	public Threadee(LinkedList<Long> monteurID,LinkedList<Long> id, Auge[] augen, Rumpf rumpf, Kettenantrieb antrieb, Arm[] arme) {
+	public Threadee(LinkedList<Long> monteurID,LinkedList<Long> id, Auge[] augen, Rumpf rumpf, Kettenantrieb antrieb, Arm[] arme, Antenne antenne, Greifer[] greifer) {
 		this.id = id;							//Hier ist keine ueberpruefung noetig da die ID vom Sekretariat vergeben wird,
 		this.augen = augen;						//und die Bestandteile vom Monteur, der die Daten vom Lagermitarbeiter bekommt.
 		this.rumpf = rumpf;
 		this.kettenantrieb = antrieb;
 		this.arme = arme;
 		this.mID=monteurID;
+		this.antenne = antenne;
+		this.greifer = greifer;
 	}
 	
 	/**
@@ -95,7 +107,8 @@ public class Threadee {
 	public String toString() {
 		return ("Threadee:" + Sekretariat.idToString(id) + ";" + "Monteur:" + Sekretariat.idToString(mID) + ";"
 				+ augen[0].toString() + ";" + augen[1].toString() + ";" + rumpf.toString() + ";" + kettenantrieb.toString()
-				+ ";" + arme[0].toString() + ";" + arme[1].toString());
+				+ ";" + arme[0].toString() + ";" + arme[1].toString() + ";" + antenne.toString() + ";"
+				+ greifer[0].toString() + ";" + greifer[1].toString());
 		
 	}
 

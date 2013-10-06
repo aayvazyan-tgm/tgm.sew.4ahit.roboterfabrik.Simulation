@@ -37,7 +37,7 @@ public class TestThreadee {
 		arme[1] = new Arm(s4);
 		LinkedList<Long> id = new LinkedList<Long>();
 		id.add(1l);
-		assertNotNull(new Threadee(id,id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme));
+		assertNotNull(new Threadee(id,id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme, new Antenne(s1), new Greifer[]{new Greifer(s2),new Greifer(s3)}));
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class TestThreadee {
 		arme[1] = new Arm(s4);
 		LinkedList<Long> id = new LinkedList<Long>();
 		id.add(1l);
-		Threadee t = new Threadee(id,id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme);
+		Threadee t = new Threadee(id,id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme, new Antenne(s1), new Greifer[]{new Greifer(s2),new Greifer(s3)});
 		assertEquals(id, t.getID());
 	}
 	
@@ -82,7 +82,7 @@ public class TestThreadee {
 		arme[1] = new Arm(s4);
 		LinkedList<Long> id = new LinkedList<Long>();
 		id.add(1l);
-		Threadee t = new Threadee(id,id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme);
+		Threadee t = new Threadee(id,id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme, new Antenne(s1), new Greifer[]{new Greifer(s2),new Greifer(s3)});
 		t.setMID(id);
 		assertEquals(id, t.getMID());
 	}
@@ -106,12 +106,13 @@ public class TestThreadee {
 		arme[1] = new Arm(s4);
 		LinkedList<Long> id = new LinkedList<Long>();
 		id.add(1l);
-		Threadee t = new Threadee(id,id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme);
+		Threadee t = new Threadee(id,id, augen, new Rumpf(s5), new Kettenantrieb(s6), arme, new Antenne(s1), new Greifer[]{new Greifer(s2),new Greifer(s3)});
 		t.setMID(id);
 		assertEquals("Threadee:1;Monteur:1;Auge,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7;"
 				+ "Auge,0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100;Rumpf,0,1,2,5,6,7,10,11,198,18,19,20,31,33,52,57,61,98,99,100;"
 				+ "Kettenantrieb,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,972,17,18,19,20;Arm,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20;"
-				+ "Arm,1,2,0,3,4,56,7,8,9,10,11,12,23,14,52,16,71,18,19,29", t.toString());
+				+ "Arm,1,2,0,3,4,56,7,8,9,10,11,12,23,14,52,16,71,18,19,29;Antenne,6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7;"
+				+ "Greifer,0,1,2,5,6,7,10,11,14,18,19,20,31,33,52,57,61,98,99,100;Greifer,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20", t.toString());
 	}
 	
 

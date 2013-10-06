@@ -138,6 +138,10 @@ public class MyCommandLine {
 					f.createNewFile();
 					f=new File(pfad+File.separator+"kettenantriebe.csv");
 					f.createNewFile();
+					f=new File(pfad+File.separator+"antenne.csv");
+					f.createNewFile();
+					f=new File(pfad+File.separator+"greifer.csv");
+					f.createNewFile();
 					f=new File(pfad+File.separator+"threadees.csv");
 					f.createNewFile();
 				}catch(Exception e){

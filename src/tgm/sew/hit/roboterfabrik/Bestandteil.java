@@ -91,7 +91,7 @@ public abstract class Bestandteil {
 				snr[i-1] = Integer.parseInt(teil[i]);
 			} catch(NumberFormatException e) {		//Wenn die Strings keine Zahlen sind wird eine Fehlermeldung zurückgegeben
 				name = "";							//und der Name auf "" gesetzt damit null returned wird.
-				System.out.println("Es ist ein Fehler beim Verarbeiten der Bestanteile entstanden");
+				System.out.println("Es ist ein Fehler beim Auslesen der Bestanteile entstanden");
 			}
 		}
 		
@@ -108,6 +108,12 @@ public abstract class Bestandteil {
 		
 		if(name.equals("Arm"))
 			temp = new Arm(snr);
+		
+		if(name.equals("Antenne"))
+			temp = new Antenne(snr);
+		
+		if(name.equals("Greifer"))
+			temp = new Greifer(snr);
 		
 		return temp;
 	}

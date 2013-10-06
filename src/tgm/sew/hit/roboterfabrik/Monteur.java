@@ -61,20 +61,26 @@ public class Monteur implements Stoppable {
 	 * @return einen fertig zusammen gebauten Roboter (Threadee), falls eines der übergebenen Teile null ist weil
 	 * der Lagermitarbeiter sie nicht "auf Lager" hat, wird null zurück gegeben.
 	 */
-	protected Threadee zusammenbauen(Auge auge1, Auge auge2, Rumpf rumpf, Kettenantrieb antrieb, Arm arm1, Arm arm2) {
+	protected Threadee zusammenbauen(Auge auge1, Auge auge2, Rumpf rumpf, Kettenantrieb antrieb, Arm arm1, 
+			Arm arm2, Antenne antenne, Greifer greifer1, Greifer greifer2) {
 		Logger logger=Logger.getLogger("Arbeitsverlauf");
-		if(auge1 != null && auge2 != null && rumpf != null && antrieb != null && arm1 != null && arm2 != null) {		//wenn keines der Teile null ist
-			auge1.sortieren();																							//wird der Roboter zusammengebaut
-			auge2.sortieren();																							//(sortieren der Seriennummer)
-			rumpf.sortieren();
+		if(auge1 != null && auge2 != null && rumpf != null && antrieb != null && arm1 != null 
+				&& arm2 != null && antenne != null && greifer1 != null && greifer2 != null) {		
+			auge1.sortieren();																							//wenn keines der Teile null ist
+			auge2.sortieren();																							//wird der Roboter zusammengebaut
+			rumpf.sortieren();																							//(sortieren der Seriennummer)
 			antrieb.sortieren();
 			arm1.sortieren();
 			arm2.sortieren();
+			antenne.sortieren();
+			greifer1.sortieren();
+			greifer2.sortieren();
 			
 			Auge[] augen = {auge1, auge2};
 			Arm[] arme = {arm1, arm2};
+			Greifer[] greifer = {greifer1, greifer2};
 			
-			Threadee temp = new Threadee(this.id,sekretariat.getThreadeeID(), augen, rumpf, antrieb, arme);
+			Threadee temp = new Threadee(this.id,sekretariat.getThreadeeID(), augen, rumpf, antrieb, arme, antenne, greifer);
 			logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat neuen Threadee:" + Sekretariat.idToString(temp.getID()) + " zusammengebaut");
 			return temp;
 		} else {
@@ -112,6 +118,8 @@ public class Monteur implements Stoppable {
 			Rumpf rumpf = null;						//an die zusammenbauen-Methode übergeben werden, falls sie nicht gesetzt werden können
 			Kettenantrieb antrieb = null;			//mit übergeben werden um, das fehlschlagen des zusammenbauens mitloggen zu können.
 			Arm arm1 = null, arm2 = null;
+			Antenne antenne = null;
+			Greifer greifer1 = null, greifer2 = null;
 			
 			Bestandteil temp1 = lagermitarbeiter.getBestandteil("Auge");	//Es wrd ein Auge Bestandteil angefordert
 			if(temp1 != null && temp1 instanceof  Auge) {				//Hier wird ueberprueftt ob das angeforderte Teil eine Instanz 
@@ -155,8 +163,29 @@ public class Monteur implements Stoppable {
 			} else
 				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(Arm) nicht bekommen");
 			
+			Bestandteil temp7 = lagermitarbeiter.getBestandteil("Antenne");
+			if(temp7 != null && temp7 instanceof  Antenne) {
+				antenne = (Antenne) temp7;
+				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(" + antenne.toString() + ") bekommen");
+			} else
+				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(Antenne) nicht bekommen");
 			
-			Threadee roboter = zusammenbauen(auge1,auge2,rumpf,antrieb,arm1,arm2);
+			Bestandteil temp8 = lagermitarbeiter.getBestandteil("Greifer");
+			if(temp8 != null && temp8 instanceof  Greifer) {
+				greifer1 = (Greifer) temp8;
+				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(" + greifer1.toString() + ") bekommen");
+			} else
+				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(Greifer) nicht bekommen");
+			
+			Bestandteil temp9 = lagermitarbeiter.getBestandteil("Greifer");
+			if(temp9 != null && temp9 instanceof  Greifer) {
+				greifer2 = (Greifer) temp9;
+				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(" + greifer2.toString() + ") bekommen");
+			} else
+				logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das angeforderte Teil(Greifer) nicht bekommen");
+			
+			
+			Threadee roboter = zusammenbauen(auge1,auge2,rumpf,antrieb,arm1,arm2,antenne,greifer1,greifer2);
 			if(roboter != null) {
 				do {
 					/* Der Monteur versucht solange den fertigen Roboter zu liefern bis es nicht funktioniert hat. */
@@ -194,6 +223,18 @@ public class Monteur implements Stoppable {
 				if(temp6 != null) {
 					do { zurueckliefern = lagermitarbeiter.einlagern(temp6); } while(!zurueckliefern);
 					logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das Teil(" + temp6.toString() +") zurueckgeliefert");
+				}
+				if(temp7 != null) {
+					do { zurueckliefern = lagermitarbeiter.einlagern(temp7); } while(!zurueckliefern);
+					logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das Teil(" + temp7.toString() +") zurueckgeliefert");
+				}
+				if(temp8 != null) {
+					do { zurueckliefern = lagermitarbeiter.einlagern(temp8); } while(!zurueckliefern);
+					logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das Teil(" + temp8.toString() +") zurueckgeliefert");
+				}
+				if(temp9 != null) {
+					do { zurueckliefern = lagermitarbeiter.einlagern(temp9); } while(!zurueckliefern);
+					logger.log(Level.INFO, "Monteur:" + Sekretariat.idToString(id) + " hat das Teil(" + temp9.toString() +") zurueckgeliefert");
 				}
 			}
 			

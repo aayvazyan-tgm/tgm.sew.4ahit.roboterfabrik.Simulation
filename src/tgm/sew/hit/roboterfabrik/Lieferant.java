@@ -95,6 +95,16 @@ public class Lieferant implements Stoppable {
 			logger.log(Level.INFO, "Neues Teil an einen Lagermitarbeiter geliefert: "+bestandteil.toString());
 			lagerM.einlagern(bestandteil);
 		}
+		if(bestandteilname.equalsIgnoreCase("Antenne")){
+			Antenne bestandteil=new Antenne(this.sekretariat.getBauTeilID()); //erstelle einen neuen Kettenantrieb mit der vom Sektretariat vergebenen ID
+			logger.log(Level.INFO, "Neues Teil an einen Lagermitarbeiter geliefert: "+bestandteil.toString());
+			lagerM.einlagern(bestandteil);
+		}
+		if(bestandteilname.equalsIgnoreCase("Greifer")){
+			Greifer bestandteil=new Greifer(this.sekretariat.getBauTeilID()); //erstelle einen neuen Kettenantrieb mit der vom Sektretariat vergebenen ID
+			logger.log(Level.INFO, "Neues Teil an einen Lagermitarbeiter geliefert: "+bestandteil.toString());
+			lagerM.einlagern(bestandteil);
+		}
 	}
 
 	/**
@@ -118,7 +128,7 @@ public class Lieferant implements Stoppable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			int bestandTeilZfZahl=r.nextInt(4); //Liefert einen pseudo zufaelligen wert um ein zufaelliges Bestandteil zu erstellen.
+			int bestandTeilZfZahl=r.nextInt(6); //Liefert einen pseudo zufaelligen wert um ein zufaelliges Bestandteil zu erstellen.
 			switch(bestandTeilZfZahl){
 			case 0:
 				liefern("Auge");
@@ -136,6 +146,15 @@ public class Lieferant implements Stoppable {
 			case 3:
 				liefern("Arm");
 				liefern("Arm");
+				break;
+				
+			case 4:
+				liefern("Antenne");
+				break;
+				
+			case 5:
+				liefern("Greifer");
+				liefern("Greifer");
 				break;
 				
 			default: //sollte nie auftreten

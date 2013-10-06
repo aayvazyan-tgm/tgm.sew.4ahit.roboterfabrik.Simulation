@@ -6,6 +6,7 @@ package tgm.sew.hit.roboterfabrik.test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
 import tgm.sew.hit.roboterfabrik.*;
 
 /**
@@ -42,18 +43,26 @@ public class TestMonteur {
 		Kettenantrieb antrieb = new Kettenantrieb(s4);
 		Arm arm1 = new Arm(s5);
 		Arm arm2 = new Arm(s6);
-		if(auge1 != null && auge2 != null && rumpf != null && antrieb != null && arm1 != null && arm2 != null) {
-			auge1.sortieren();																							
-			auge2.sortieren();																							
-			rumpf.sortieren();
+		Antenne antenne = new Antenne(s1);
+		Greifer greifer1 = new Greifer(s2);
+		Greifer greifer2 = new Greifer(s3);
+		if(auge1 != null && auge2 != null && rumpf != null && antrieb != null && arm1 != null 
+				&& arm2 != null && antenne != null && greifer1 != null && greifer2 != null) {		
+			auge1.sortieren();																							//wenn keines der Teile null ist
+			auge2.sortieren();																							//wird der Roboter zusammengebaut
+			rumpf.sortieren();																							//(sortieren der Seriennummer)
 			antrieb.sortieren();
 			arm1.sortieren();
 			arm2.sortieren();
+			antenne.sortieren();
+			greifer1.sortieren();
+			greifer2.sortieren();
 			
 			Auge[] augen = {auge1, auge2};
 			Arm[] arme = {arm1, arm2};
+			Greifer[] greifer = {greifer1, greifer2};
 			
-			temp = new Threadee(null,null, augen, rumpf, antrieb, arme);
+			temp = new Threadee(null,null, augen, rumpf, antrieb, arme, antenne, greifer);
 		} else {
 			temp = null;
 		}
@@ -77,18 +86,26 @@ public class TestMonteur {
 		Kettenantrieb antrieb = new Kettenantrieb(s4);
 		Arm arm1 = new Arm(s5);
 		Arm arm2 = new Arm(s6);
-		if(auge1 != null && auge2 != null && rumpf != null && antrieb != null && arm1 != null && arm2 != null) {		//wenn keines der Teile null ist
-			auge1.sortieren();																							//wird der Roboter zusammengebaut
-			auge2.sortieren();																							//(sortieren der Seriennummer)
-			rumpf.sortieren();
+		Antenne antenne = new Antenne(s1);
+		Greifer greifer1 = new Greifer(s2);
+		Greifer greifer2 = new Greifer(s3);
+		if(auge1 != null && auge2 != null && rumpf != null && antrieb != null && arm1 != null 
+				&& arm2 != null && antenne != null && greifer1 != null && greifer2 != null) {		
+			auge1.sortieren();																							//wenn keines der Teile null ist
+			auge2.sortieren();																							//wird der Roboter zusammengebaut
+			rumpf.sortieren();																							//(sortieren der Seriennummer)
 			antrieb.sortieren();
 			arm1.sortieren();
 			arm2.sortieren();
+			antenne.sortieren();
+			greifer1.sortieren();
+			greifer2.sortieren();
 			
 			Auge[] augen = {auge1, auge2};
 			Arm[] arme = {arm1, arm2};
+			Greifer[] greifer = {greifer1, greifer2};
 			
-			temp = new Threadee(null,null, augen, rumpf, antrieb, arme);
+			temp = new Threadee(null,null, augen, rumpf, antrieb, arme, antenne, greifer);
 		} else {
 			temp = null;
 		}
@@ -108,19 +125,24 @@ public class TestMonteur {
 	/**
 	 * Wird zum testen der run-Methode benötigt
 	 */
-	public void testZusammenbauen(Auge auge1, Auge auge2, Rumpf rumpf, Kettenantrieb antrieb, Arm arm1, Arm arm2) {
-		if(auge1 != null && auge2 != null && rumpf != null && antrieb != null && arm1 != null && arm2 != null) {
-			auge1.sortieren();																							
-			auge2.sortieren();																							
-			rumpf.sortieren();
+	public void testZusammenbauen(Auge auge1, Auge auge2, Rumpf rumpf, Kettenantrieb antrieb, Arm arm1, Arm arm2, Antenne antenne, Greifer greifer1, Greifer greifer2) {
+		if(auge1 != null && auge2 != null && rumpf != null && antrieb != null && arm1 != null 
+				&& arm2 != null && antenne != null && greifer1 != null && greifer2 != null) {		
+			auge1.sortieren();																							//wenn keines der Teile null ist
+			auge2.sortieren();																							//wird der Roboter zusammengebaut
+			rumpf.sortieren();																							//(sortieren der Seriennummer)
 			antrieb.sortieren();
 			arm1.sortieren();
 			arm2.sortieren();
+			antenne.sortieren();
+			greifer1.sortieren();
+			greifer2.sortieren();
 			
 			Auge[] augen = {auge1, auge2};
 			Arm[] arme = {arm1, arm2};
+			Greifer[] greifer = {greifer1, greifer2};
 			
-			temp = new Threadee(null,null, augen, rumpf, antrieb, arme);
+			temp = new Threadee(null,null, augen, rumpf, antrieb, arme, antenne, greifer);
 		} else {
 			temp = null;
 		}
@@ -131,11 +153,13 @@ public class TestMonteur {
 	 */
 	@Test
 	public void testRun_1() {
-		boolean liefern, zurueckliefern;
 		Auge auge1 = null, auge2 = null;
 		Rumpf rumpf = null;
 		Kettenantrieb antrieb = null;
 		Arm arm1 = null, arm2 = null;
+		Antenne antenne = null;
+		Greifer greifer1 = null, greifer2 = null;
+		
 		Bestandteil temp1 = new Auge(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
 		if(temp1 != null && temp1 instanceof  Auge) {
 			auge1 = (Auge) temp1;
@@ -166,7 +190,22 @@ public class TestMonteur {
 			arm2 = (Arm) temp6;
 		} else {}
 			//loggen
-		testZusammenbauen(auge1, auge2, rumpf, antrieb, arm1, arm2);
+		Bestandteil temp7 = new Antenne(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp7 != null && temp7 instanceof  Antenne) {
+			antenne = (Antenne) temp7;
+		} else {}
+			//loggen
+		Bestandteil temp8 = new Greifer(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp8 != null && temp8 instanceof  Greifer) {
+			greifer1 = (Greifer) temp8;
+		} else {}
+			//loggen
+		Bestandteil temp9 = new Greifer(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp9 != null && temp9 instanceof  Greifer) {
+			greifer2 = (Greifer) temp9;
+		} else {}
+			//loggen
+		testZusammenbauen(auge1, auge2, rumpf, antrieb, arm1, arm2, antenne, greifer1, greifer2);
 		assertNotNull(temp);
 	}
 	
@@ -175,11 +214,13 @@ public class TestMonteur {
 	 */
 	@Test
 	public void testRun_2() {
-		boolean liefern, zurueckliefern;
 		Auge auge1 = null, auge2 = null;
 		Rumpf rumpf = null;
 		Kettenantrieb antrieb = null;
 		Arm arm1 = null, arm2 = null;
+		Antenne antenne = null;
+		Greifer greifer1 = null, greifer2 = null;
+		
 		Bestandteil temp1 = new Auge(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
 		if(temp1 != null && temp1 instanceof  Auge) {
 			auge1 = (Auge) temp1;
@@ -210,8 +251,22 @@ public class TestMonteur {
 			arm2 = (Arm) temp6;
 		} else {}
 			//loggen
-		testZusammenbauen(auge1, auge2, rumpf, antrieb, arm1, arm2);;
-		assertNull(temp);
+		Bestandteil temp7 = new Antenne(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp7 != null && temp7 instanceof  Antenne) {
+			antenne = (Antenne) temp7;
+		} else {}
+			//loggen
+		Bestandteil temp8 = new Greifer(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp8 != null && temp8 instanceof  Greifer) {
+			greifer1 = (Greifer) temp8;
+		} else {}
+			//loggen
+		Bestandteil temp9 = new Greifer(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp9 != null && temp9 instanceof  Greifer) {
+			greifer2 = (Greifer) temp9;
+		} else {}
+			//loggen
+		testZusammenbauen(auge1, auge2, rumpf, antrieb, arm1, arm2, antenne, greifer1, greifer2);		assertNull(temp);
 	}
 	
 	/**
@@ -219,11 +274,13 @@ public class TestMonteur {
 	 */
 	@Test
 	public void testRun_3() {
-		boolean liefern, zurueckliefern;
 		Auge auge1 = null, auge2 = null;
 		Rumpf rumpf = null;
 		Kettenantrieb antrieb = null;
 		Arm arm1 = null, arm2 = null;
+		Antenne antenne = null;
+		Greifer greifer1 = null, greifer2 = null;
+		
 		Bestandteil temp1 = new Auge(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
 		if(temp1 != null && temp1 instanceof  Auge) {
 			auge1 = (Auge) temp1;
@@ -254,7 +311,22 @@ public class TestMonteur {
 			arm2 = (Arm) temp6;
 		} else {}
 			//loggen
-		testZusammenbauen(auge1, auge2, rumpf, antrieb, arm1, arm2);
+		Bestandteil temp7 = new Antenne(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp7 != null && temp7 instanceof  Antenne) {
+			antenne = (Antenne) temp7;
+		} else {}
+			//loggen
+		Bestandteil temp8 = new Greifer(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp8 != null && temp8 instanceof  Greifer) {
+			greifer1 = (Greifer) temp8;
+		} else {}
+			//loggen
+		Bestandteil temp9 = new Greifer(new Integer[]{6,0,1,57,98,2,11,20,5,10,19,33,31,61,99,100,52,18,14,7});
+		if(temp9 != null && temp9 instanceof  Greifer) {
+			greifer2 = (Greifer) temp9;
+		} else {}
+			//loggen
+		testZusammenbauen(auge1, auge2, rumpf, antrieb, arm1, arm2, antenne, greifer1, greifer2);
 		assertNull(temp);
 	}
 

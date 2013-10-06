@@ -66,6 +66,14 @@ public class LagerMitarbeiter{
 			File f=new File(lagerVerzeichnis+File.separator+"kettenantriebe.csv");
 			return getBestandTeilvonFile(f);
 		}
+		if(bestandteilname.equalsIgnoreCase("Antenne")){
+			File f=new File(lagerVerzeichnis+File.separator+"antenne.csv");
+			return getBestandTeilvonFile(f);
+		}
+		if(bestandteilname.equalsIgnoreCase("Greifer")){
+			File f=new File(lagerVerzeichnis+File.separator+"greifer.csv");
+			return getBestandTeilvonFile(f);
+		}
 		return null; //gibt null zurueck falls der bestandteilname nicht gefunden wird
 	}
 	/**
@@ -127,6 +135,12 @@ public class LagerMitarbeiter{
 		}
 		if(bestandteil instanceof Kettenantrieb){
 			f=new File(lagerVerzeichnis+File.separator+"kettenantriebe.csv");
+		}
+		if(bestandteil instanceof Antenne){
+			f=new File(lagerVerzeichnis+File.separator+"antenne.csv");
+		}
+		if(bestandteil instanceof Greifer){
+			f=new File(lagerVerzeichnis+File.separator+"greifer.csv");
 		}
 		try{
 			//Inhalt auslesen und abspeichern
