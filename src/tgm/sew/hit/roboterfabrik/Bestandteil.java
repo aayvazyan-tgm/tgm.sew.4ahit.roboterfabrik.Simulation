@@ -47,7 +47,7 @@ public abstract class Bestandteil {
 	public void sortieren() {
 		int laenge = snr.length;
         int temp;
-        
+        try{
         for(int counter = 0; counter < laenge-1; counter++) {		//Bubble-Sort Algorithmus
             for(int i = 0; i < laenge-1; i++) {
                 if(snr[i] > snr[i+1]) {					//Wenn die aktuelle zahl snr[i] groesser ist 
@@ -57,6 +57,9 @@ public abstract class Bestandteil {
                 }
             }
         }
+        }catch(Exception e){
+        	e.printStackTrace();
+        	}
 	}
 
 	/**
@@ -92,6 +95,7 @@ public abstract class Bestandteil {
 			} catch(NumberFormatException e) {		//Wenn die Strings keine Zahlen sind wird eine Fehlermeldung zurückgegeben
 				name = "";							//und der Name auf "" gesetzt damit null returned wird.
 				System.out.println("Es ist ein Fehler beim Auslesen der Bestanteile entstanden");
+				return null;
 			}
 		}
 		
