@@ -27,8 +27,6 @@ public class LagerMitarbeiter{
 	/** Das lager Verzeichnis. */
 	private String lagerVerzeichnis;
 	
-	private Object sync=new Object();
-	
 	/**
 	 * Erstellt einen neuen LagerMitarbeiter
 	 *
@@ -50,7 +48,7 @@ public class LagerMitarbeiter{
 	 * @return das angeforderte Bestandteil, kann mit instanceof zugeordnet werden. Gibt null zurueck wenn das angeforderte Teil nicht vorhanden ist, oder ein fehler aufgetreten ist.
 	 */
 	public synchronized Bestandteil getBestandteil(String bestandteilname) {
-		
+		synchronized(this){
 		if(bestandteilname.equalsIgnoreCase("Arm")){
 			File f=new File(lagerVerzeichnis+File.separator+"arme.csv");
 			return getBestandTeilvonFile(f);
@@ -75,6 +73,7 @@ public class LagerMitarbeiter{
 			File f=new File(lagerVerzeichnis+File.separator+"greifer.csv");
 			return getBestandTeilvonFile(f);
 		}
+		}
 		return null; //gibt null zurueck falls der bestandteilname nicht gefunden wird
 	}
 	/**
@@ -84,7 +83,7 @@ public class LagerMitarbeiter{
 	 * @return gibt den Bestandteil aus dem pfad zurueck
 	 */
 	private synchronized Bestandteil getBestandTeilvonFile(File f) {
-		synchronized(sync){
+		
 			try{
 				Scanner fileScanner = new Scanner(f);
 				if(!fileScanner.hasNext()){ //Sollte kein bestandteil vorhanden sein wird null zurueckgegeben
@@ -103,7 +102,7 @@ public class LagerMitarbeiter{
 				out.close(); //ressourcen freigeben
 				fileScanner.close();
 				fileStream.close();
-				
+				if(eingelesen.toString().toLowerCase().contains("null"))return null; //Sollte null gelesen werden: fehlgeschlagen
 				return Bestandteil.getBestandTeil(eingelesen); //wandelt den String aus dem file in ein Bestandteil objekt um.
 	        } catch (FileNotFoundException e){
 	        	Logger logger=Logger.getLogger("Arbeitsverlauf");
@@ -113,7 +112,7 @@ public class LagerMitarbeiter{
 	        	Logger logger=Logger.getLogger("Arbeitsverlauf");
 	            logger.log(Level.DEBUG, "Der lagermitarbeiter konnte nicht auf eine Datei zugreifen: "+e.getMessage());
 	        }
-		}
+		
 		return null; //bei auftreten eines fehlers wird null zurueckgegeben
 	}
 
@@ -127,7 +126,8 @@ public class LagerMitarbeiter{
 	 * @return gibt zurueck ob die funktion erfolgreich ausgefuehrt wurde.
 	 */
 	public synchronized boolean einlagern(Bestandteil bestandteil) {
-		synchronized(sync){
+		synchronized(this){
+			if(bestandteil.toString().toLowerCase().contains("null"))return true; //Sollte versucht werden null zu speichern: speichere nichs
 			Logger logger=Logger.getLogger("Arbeitsverlauf");
 			File f=new File("");
 			if(bestandteil instanceof Arm){
