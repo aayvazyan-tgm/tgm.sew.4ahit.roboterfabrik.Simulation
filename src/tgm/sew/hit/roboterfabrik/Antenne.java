@@ -3,7 +3,7 @@ package tgm.sew.hit.roboterfabrik;
 /**
  * Stellt das Bestandteil Antenne dar.
  * @author Vennesa Belinic
- * @version 2013-09-27
+ * @version 2013-10-06
  */
 public class Antenne extends Bestandteil {
 
